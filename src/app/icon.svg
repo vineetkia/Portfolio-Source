@@ -1,0 +1,29 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="em" x1="6" y1="5" x2="26" y2="27" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7dffc4"/>
+      <stop offset="1" stop-color="#00cf78"/>
+    </linearGradient>
+    <radialGradient id="core" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#00ff99" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#00ff99" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- terminal chip -->
+  <rect x="1" y="1" width="30" height="30" rx="7.5" fill="#050505"/>
+  <rect x="1.5" y="1.5" width="29" height="29" rx="7" stroke="#00ff99" stroke-opacity="0.22"/>
+
+  <!-- converging edges: two source nodes -> synthesis core (also reads as "V") -->
+  <path d="M8.6 9.2 L16 22.4" stroke="url(#em)" stroke-width="2.3" stroke-linecap="round" stroke-opacity="0.92"/>
+  <path d="M23.4 9.2 L16 22.4" stroke="url(#em)" stroke-width="2.3" stroke-linecap="round" stroke-opacity="0.92"/>
+
+  <!-- core glow -->
+  <circle cx="16" cy="22.4" r="7" fill="url(#core)"/>
+
+  <!-- nodes -->
+  <circle cx="8.6" cy="9.2" r="2.5" fill="url(#em)"/>
+  <circle cx="23.4" cy="9.2" r="2.5" fill="url(#em)"/>
+  <circle cx="16" cy="22.4" r="3.2" fill="url(#em)"/>
+  <circle cx="16" cy="22.4" r="1.15" fill="#eafff5"/>
+</svg>

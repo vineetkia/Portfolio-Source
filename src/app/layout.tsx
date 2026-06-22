@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/data/portfolio";
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vinet.dev"),
   title: "Vineet Kumar — Software Engineer",
   description,
+  manifest: "/site.webmanifest",
   keywords: [
     "Vineet Kumar",
     "Software Engineer",
@@ -51,6 +52,10 @@ export const metadata: Metadata = {
     description,
     images: [profile.photo],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050505",
 };
 
 export default function RootLayout({
