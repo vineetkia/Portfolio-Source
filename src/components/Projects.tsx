@@ -1,16 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { ArrowUpRight } from "lucide-react";
 import { projects, profile, type Project } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import GlitchText from "./GlitchText";
-import AsciiAnimation from "./AsciiAnimation";
-
-const ShaderAnimation = dynamic(
-  () => import("@/components/ui/shader-lines").then((m) => m.ShaderAnimation),
-  { ssr: false }
-);
+import AsciiAnimation, { type AsciiVariant } from "./AsciiAnimation";
+import Aurora from "./Aurora";
 
 // Most in-demand skills first.
 const CATEGORY_ORDER: Project["category"][] = [
@@ -21,31 +16,40 @@ const CATEGORY_ORDER: Project["category"][] = [
   "Systems",
 ];
 
-const categoryGradient: Record<Project["category"], string> = {
-  "AI / ML": "from-emerald-500/40 via-teal-500/20 to-transparent",
-  "Distributed Systems": "from-sky-500/40 via-indigo-500/20 to-transparent",
-  "Full-Stack": "from-violet-500/40 via-fuchsia-500/20 to-transparent",
-  Fintech: "from-amber-500/40 via-emerald-500/20 to-transparent",
-  Systems: "from-zinc-400/40 via-slate-500/20 to-transparent",
+// Each category gets its own ASCII pattern + accent tint so every card differs.
+const categoryAscii: Record<
+  Project["category"],
+  { variant: AsciiVariant; color: string; tint: string }
+> = {
+  "AI / ML": { variant: "plasma", color: "text-emerald-400/45", tint: "from-emerald-500/25" },
+  "Distributed Systems": { variant: "rings", color: "text-sky-400/45", tint: "from-sky-500/25" },
+  "Full-Stack": { variant: "waves", color: "text-violet-400/45", tint: "from-violet-500/25" },
+  Fintech: { variant: "rain", color: "text-amber-400/45", tint: "from-amber-500/25" },
+  Systems: { variant: "grid", color: "text-zinc-300/40", tint: "from-zinc-400/25" },
 };
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const ascii = categoryAscii[project.category];
   return (
     <Reveal
       as="article"
       delay={index * 120}
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/40 hover:bg-white/[0.08]"
     >
-      <div
-        className={`relative flex h-36 items-end overflow-hidden bg-gradient-to-br ${
-          categoryGradient[project.category]
-        }`}
-      >
+      <div className="relative flex h-36 items-end overflow-hidden bg-black">
+        <AsciiAnimation
+          variant={ascii.variant}
+          seed={index * 7}
+          rows={16}
+          cols={70}
+          speed={1}
+          className={`absolute inset-0 px-2 py-1 text-[8px] tracking-tighter ${ascii.color} transition-opacity duration-300 group-hover:opacity-100 opacity-80`}
+        />
         <div
           aria-hidden
-          className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:22px_22px]"
+          className={`absolute inset-0 bg-gradient-to-t ${ascii.tint} via-transparent to-black/40`}
         />
-        <span className="relative m-4 rounded-full border border-white/20 bg-black/30 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
+        <span className="relative m-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
           {project.category}
         </span>
       </div>
@@ -99,8 +103,7 @@ export default function Projects() {
       id="projects"
       className="relative overflow-hidden py-24 sm:py-32"
     >
-      <ShaderAnimation className="absolute inset-0 h-full w-full" />
-      <div aria-hidden className="absolute inset-0 bg-black/75" />
+      <Aurora className="absolute inset-0 h-full w-full" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <Reveal>
@@ -118,8 +121,11 @@ export default function Projects() {
           </p>
         </Reveal>
 
-        <Reveal className="mt-8 overflow-hidden rounded-xl border border-white/5 bg-black/30">
-          <AsciiAnimation className="px-4 py-3 text-[9px] sm:text-[11px]" />
+        <Reveal className="mt-8 overflow-hidden rounded-xl border border-white/5 bg-black/40 backdrop-blur-sm">
+          <AsciiAnimation
+            variant="plasma"
+            className="px-4 py-3 text-[9px] text-emerald-500/35 sm:text-[11px]"
+          />
         </Reveal>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

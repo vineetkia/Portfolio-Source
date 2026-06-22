@@ -150,6 +150,23 @@ body {
   97% { opacity: 1; }
 }
 
+/* ---------- aurora background ---------- */
+@keyframes aurora-a {
+  0%, 100% { transform: translate(-8%, -6%) scale(1); }
+  50% { transform: translate(10%, 8%) scale(1.25); }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate(6%, 4%) scale(1.15); }
+  50% { transform: translate(-10%, -8%) scale(0.95); }
+}
+@keyframes aurora-c {
+  0%, 100% { transform: translate(-4%, 8%) scale(1.05); }
+  50% { transform: translate(8%, -6%) scale(1.2); }
+}
+.aurora-a { animation: aurora-a 22s ease-in-out infinite; }
+.aurora-b { animation: aurora-b 28s ease-in-out infinite; }
+.aurora-c { animation: aurora-c 34s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-fade-in,
@@ -161,4 +178,5 @@ body {
     transition: none;
   }
   .fx-grain::before { animation: none; }
+  .aurora-a, .aurora-b, .aurora-c { animation: none; }
 }
