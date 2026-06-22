@@ -46,15 +46,15 @@ export const experience: Experience[] = [
   {
     role: "Software Engineer Intern",
     company: "Microsoft",
-    location: "San Francisco Bay Area, CA",
-    period: "2026 — Present",
+    location: "Redmond, Washington · On-site",
+    period: "May 2026 — Present",
     current: true,
     summary:
-      "Building software as an engineering intern while completing my Master's in the Bay Area.",
+      "Software engineering intern on the Microsoft Security IQ team (formerly Sentinel Platform).",
     highlights: [
-      "Contributing to engineering work alongside my graduate studies at San Jose State University.",
+      "Building on the Microsoft Security IQ team (formerly the Sentinel Platform), contributing to security tooling at cloud scale.",
     ],
-    tags: ["Software Engineering", "Cloud"],
+    tags: ["Software Engineering", "Security", "Azure", "Cloud"],
   },
   {
     role: "Software Development Engineer",
