@@ -4,8 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { projects, profile, type Project } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import GlitchText from "./GlitchText";
-import AsciiAnimation from "./AsciiAnimation";
-import ProjectAscii, { type AsciiTheme } from "./ProjectAscii";
+import ProjectAscii from "./ProjectAscii";
 import Aurora from "./Aurora";
 
 // Most in-demand skills first.
@@ -17,20 +16,17 @@ const CATEGORY_ORDER: Project["category"][] = [
   "Systems",
 ];
 
-// Each category maps to a thematic ASCII scene + accent tint.
-const categoryAscii: Record<
-  Project["category"],
-  { theme: AsciiTheme; color: string; tint: string }
-> = {
-  "AI / ML": { theme: "ai", color: "text-emerald-400/70", tint: "from-emerald-500/20" },
-  "Distributed Systems": { theme: "distributed", color: "text-sky-400/70", tint: "from-sky-500/20" },
-  "Full-Stack": { theme: "fullstack", color: "text-violet-400/70", tint: "from-violet-500/20" },
-  Fintech: { theme: "fintech", color: "text-amber-400/75", tint: "from-amber-500/20" },
-  Systems: { theme: "fullstack", color: "text-zinc-300/70", tint: "from-zinc-400/20" },
+// Accent colour + tint per category (the scene itself comes from project.ascii).
+const categoryStyle: Record<Project["category"], { color: string; tint: string }> = {
+  "AI / ML": { color: "text-emerald-400/70", tint: "from-emerald-500/20" },
+  "Distributed Systems": { color: "text-sky-400/70", tint: "from-sky-500/20" },
+  "Full-Stack": { color: "text-violet-400/70", tint: "from-violet-500/20" },
+  Fintech: { color: "text-amber-400/75", tint: "from-amber-500/20" },
+  Systems: { color: "text-zinc-300/70", tint: "from-zinc-400/20" },
 };
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const ascii = categoryAscii[project.category];
+  const style = categoryStyle[project.category];
   return (
     <Reveal
       as="article"
@@ -40,14 +36,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div className="relative flex h-36 items-end justify-center overflow-hidden bg-black">
         <div className="absolute inset-0 flex items-center justify-center">
           <ProjectAscii
-            theme={ascii.theme}
+            scene={project.ascii}
             seed={index * 5}
-            className={`text-[8.5px] tracking-tight ${ascii.color} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
+            className={`text-[8.5px] tracking-tight ${style.color} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
           />
         </div>
         <div
           aria-hidden
-          className={`pointer-events-none absolute inset-0 bg-gradient-to-t ${ascii.tint} via-transparent to-black/50`}
+          className={`pointer-events-none absolute inset-0 bg-gradient-to-t ${style.tint} via-transparent to-black/50`}
         />
         <span className="relative z-10 m-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
           {project.category}
@@ -119,14 +115,7 @@ export default function Projects() {
           </p>
         </Reveal>
 
-        <Reveal className="mt-8 overflow-hidden rounded-xl border border-white/5 bg-black/40 backdrop-blur-sm">
-          <AsciiAnimation
-            variant="plasma"
-            className="px-4 py-3 text-[9px] text-emerald-500/35 sm:text-[11px]"
-          />
-        </Reveal>
-
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {ordered.map((project, i) => (
             <ProjectCard key={project.name} project={project} index={i} />
           ))}

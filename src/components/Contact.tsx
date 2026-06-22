@@ -21,54 +21,45 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative flex min-h-[90vh] items-center overflow-hidden py-24 sm:py-32"
+      className="relative flex min-h-[85vh] items-center overflow-hidden py-24 sm:py-32"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_40%,rgba(16,185,129,0.10),transparent_70%)]"
-      />
+      {/* Seamless sparkles glow — radial-masked on all sides so there is no
+          visible box, only a soft particle field around the heading. */}
+      <div className="pointer-events-none absolute inset-x-0 top-1/2 h-[40rem] -translate-y-1/2 [mask-image:radial-gradient(55%_45%_at_50%_42%,white,transparent_72%)]">
+        <SparklesCore
+          background="transparent"
+          minSize={0.4}
+          maxSize={1.1}
+          particleDensity={420}
+          speed={1.4}
+          className="h-full w-full"
+          particleColor="#34d399"
+        />
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-3xl px-6 text-center">
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-6 text-center">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
             {"// 06 — contact"}
           </div>
 
-          <h2 className="font-heading relative z-20 mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h2 className="font-heading mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
             Let&apos;s Build Something
           </h2>
 
-          {/* Sparkles title treatment: gradient lines + particle glow, radial-masked. */}
-          <div className="relative mx-auto mt-2 h-28 w-full max-w-xl">
-            <div className="absolute inset-x-16 top-0 h-px w-[calc(100%-8rem)] bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
-            <div className="absolute inset-x-16 top-0 h-[3px] w-[calc(100%-8rem)] bg-gradient-to-r from-transparent via-emerald-500 to-transparent blur-sm" />
-            <div className="absolute inset-x-32 top-0 h-px w-[calc(100%-16rem)] bg-gradient-to-r from-transparent via-teal-400 to-transparent" />
-            <div className="absolute inset-x-32 top-0 h-[5px] w-[calc(100%-16rem)] bg-gradient-to-r from-transparent via-teal-400 to-transparent blur-sm" />
+          <div className="mx-auto mt-5 h-px w-3/5 max-w-sm bg-gradient-to-r from-transparent via-emerald-500/70 to-transparent" />
 
-            <SparklesCore
-              background="transparent"
-              minSize={0.4}
-              maxSize={1}
-              particleDensity={900}
-              speed={2}
-              className="h-full w-full"
-              particleColor="#34d399"
-            />
-
-            <div className="absolute inset-0 h-full w-full bg-[#050505] [mask-image:radial-gradient(360px_140px_at_top,transparent_20%,white)]" />
-          </div>
-
-          <p className="mx-auto -mt-6 max-w-md text-white/60">
+          <p className="mx-auto mt-6 max-w-md text-white/65">
             I&apos;m open to software engineering internships and new-grad roles,
             and always up for a conversation about distributed systems, AI, or a
             good side project.
           </p>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-9 flex justify-center">
             <LiquidButton href={`mailto:${profile.email}`} variant="accent" size="lg">
               <Mail className="h-4 w-4" />
               {profile.email}

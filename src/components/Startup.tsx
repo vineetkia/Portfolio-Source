@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { startup } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import GlitchText from "./GlitchText";
+
+const AgentConstellation = dynamic(
+  () =>
+    import("@/components/ui/agent-constellation").then(
+      (m) => m.AgentConstellation
+    ),
+  { ssr: false }
+);
 
 export default function Startup() {
   return (
@@ -15,6 +24,12 @@ export default function Startup() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_15%_0%,rgba(16,185,129,0.10),transparent_70%)]"
       />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(60%_70%_at_50%_50%,white,transparent_85%)]"
+      >
+        <AgentConstellation className="h-full w-full" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <Reveal>

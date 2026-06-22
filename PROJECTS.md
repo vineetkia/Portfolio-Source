@@ -11,7 +11,7 @@
 
 ## Academic Projects (San Jose State University — MS, 2025–present)
 
-### 1. Hyrd — Premium Career Platform · CMPE 280 (Final, Team of 5)
+### 1. Hyrd — Voice-AI Career Platform · CMPE 280 (Final, Team of 5)
 The entire job search in one editorial workspace: AI résumé optimization (recruiter-grade
 rewrites with per-change approval + ATS scoring), a kanban application tracker, AI **voice**
 mock interviews, and a post-interview performance dashboard scoring six dimensions
@@ -20,7 +20,7 @@ mock interviews, and a post-interview performance dashboard scoring six dimensio
 Docker, Framer Motion.
 **Repo:** https://github.com/vineetkia/Hyrd-AI-Career-Platform
 
-### 2. Mesh Control — Self-Healing Microservice Mesh · CMPE 273 (Final)
+### 2. Self-Healing AI Ops Mesh · CMPE 273 (Final)
 A gRPC service mesh with AI-driven root-cause analysis and autonomous remediation. Detects
 failures in <5s via 2-of-3 statistical consensus, walks the dependency graph to find the
 deepest failing dependency, and applies bounded remediation in <10s. An LLM (Azure GPT-5.3)
@@ -31,7 +31,7 @@ NATS, etcd, Docker Compose.
 (retry/timeout/circuit-breaker), root-cause algorithm, dashboard + dependency-graph viz.
 **Repo:** https://github.com/vineetkia/Self-Healing-AI-Microservice-Mesh
 
-### 3. Record-Based Medical Diagnostic Assistant · CMPE 255 (Final)
+### 3. Clinical RAG Diagnostic Engine · CMPE 255 (Final)
 A clinical decision-support pipeline: given a patient's symptoms, it ranks likely diseases and
 shows the evidence behind each ranking — the FP-Growth association rule that fired plus
 biomedical passages retrieved from MedQuAD. Designed so every prediction is auditable.

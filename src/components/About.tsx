@@ -5,10 +5,10 @@ import { about } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import GlitchText from "./GlitchText";
 
-const GenerativeMountainScene = dynamic(
+const SystemsGraphScene = dynamic(
   () =>
-    import("@/components/ui/mountain-scene").then(
-      (m) => m.GenerativeMountainScene
+    import("@/components/ui/systems-graph").then(
+      (m) => m.SystemsGraphScene
     ),
   { ssr: false }
 );
@@ -65,7 +65,7 @@ export default function About() {
           className="order-1 md:order-2"
         >
           <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-zinc-950">
-            <GenerativeMountainScene className="absolute inset-0 h-full w-full" />
+            <SystemsGraphScene className="absolute inset-0 h-full w-full" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5">
               <div className="grid grid-cols-2 gap-x-6 gap-y-3">

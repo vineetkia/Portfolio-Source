@@ -88,6 +88,15 @@ export const experience: Experience[] = [
   },
 ];
 
+export type AsciiScene =
+  | "waveform"
+  | "vectorsearch"
+  | "servers"
+  | "mapreduce"
+  | "stack"
+  | "calendar"
+  | "chart";
+
 export type Project = {
   name: string;
   blurb: string;
@@ -98,50 +107,54 @@ export type Project = {
   featured: boolean;
   category: "AI / ML" | "Distributed Systems" | "Full-Stack" | "Systems" | "Fintech";
   link?: string;
+  ascii: AsciiScene;
 };
 
-// Featured projects are ordered by most in-demand skills:
+// Projects are ordered by most in-demand skills:
 // AI/ML → Distributed Systems → Full-Stack → Fintech → Systems.
 
 export const projects: Project[] = [
   {
-    name: "Hyrd",
-    blurb: "A premium career platform — the entire job search in one editorial workspace.",
+    name: "Hyrd — Voice-AI Career Platform",
+    blurb:
+      "An agentic AI career platform: résumé optimization, a real-time voice interview agent, and post-interview performance analytics.",
     description:
-      "An AI-powered job-search workspace combining résumé optimization (recruiter-grade rewrites with per-change approval and ATS scoring), a kanban application tracker, AI voice mock interviews, and post-interview performance analytics scoring six dimensions.",
-    tags: ["Next.js 15", "TypeScript", "PostgreSQL", "Azure OpenAI", "Cartesia", "Docker", "Framer Motion"],
+      "An AI-powered job-search workspace combining LLM résumé optimization (recruiter-grade rewrites with per-change approval and ATS scoring), a real-time voice mock-interview agent, and post-interview performance analytics scoring six dimensions.",
+    tags: ["LLM", "Voice AI", "Real-time STT/TTS", "Prompt Engineering", "Inference", "Azure OpenAI", "Next.js 15"],
     context: "CMPE 280 · Final Project · Team of 5",
     highlights: [
-      "Résumé optimizer with diff annotations, per-change approval, and live ATS scoring.",
-      "2-minute AI voice mock interview with real-time audio analysis (Web Audio API).",
+      "LLM résumé optimizer with diff annotations, per-change approval, and live ATS scoring.",
+      "Real-time AI voice mock interview (sub-second STT → LLM → TTS) with audio analysis.",
       "Performance dashboard scoring clarity, confidence, relevance, structure, depth, and pace.",
     ],
     featured: true,
     category: "AI / ML",
     link: "https://github.com/vineetkia/Hyrd-AI-Career-Platform",
+    ascii: "waveform",
   },
   {
-    name: "Mesh Control",
-    blurb: "A self-healing microservice mesh with AI-driven root-cause analysis.",
+    name: "Self-Healing AI Ops Mesh",
+    blurb: "An LLM-driven self-healing service mesh with autonomous, AI root-cause remediation.",
     description:
       "A gRPC service mesh that observes itself, identifies the deepest failing dependency in its call graph, and applies bounded remediation autonomously — an LLM drives reasoning while a deterministic rule engine guarantees safety. Detects failures in under 5 seconds and recovers in under 10.",
-    tags: ["Python", "FastAPI", "gRPC", "React", "OpenTelemetry", "Prometheus", "Docker", "etcd", "NATS"],
+    tags: ["LLM Agents", "AI Root-Cause", "Inference", "gRPC", "FastAPI", "OpenTelemetry", "Docker"],
     context: "CMPE 273 · Enterprise Distributed Systems · Final Project",
     highlights: [
       "16-container mesh with failure detection via 2-of-3 statistical consensus.",
       "Dependency-graph root-cause algorithm distinguishing symptom from cause.",
-      "Azure GPT-5.3 reasoning with a deterministic rule-engine fallback and 12s cooldown.",
+      "LLM reasoning (Azure GPT) with a deterministic rule-engine fallback and 12s cooldown.",
     ],
     featured: true,
     category: "Distributed Systems",
     link: "https://github.com/vineetkia/Self-Healing-AI-Microservice-Mesh",
+    ascii: "servers",
   },
   {
-    name: "Medical Diagnostic Assistant",
-    blurb: "Record-based clinical decision support where every prediction is auditable.",
+    name: "Clinical RAG Diagnostic Engine",
+    blurb: "A retrieval-augmented (RAG) clinical engine that ranks diagnoses with auditable, cited evidence.",
     description:
-      "A clinical decision-support pipeline that ranks likely diseases from a patient's symptom set and shows the evidence behind each ranking — the FP-Growth association rule that fired plus biomedical passages retrieved from MedQuAD. Built so every prediction is explainable, not a black box.",
-    tags: ["Next.js", "FastAPI", "FAISS", "Pinecone", "Azure OpenAI", "FP-Growth", "RAG"],
+      "A clinical decision-support pipeline that ranks likely diseases from a patient's symptom set and shows the evidence behind each ranking — the FP-Growth association rule that fired plus biomedical passages retrieved from MedQuAD via dense vector search. Built so every prediction is explainable, not a black box.",
+    tags: ["RAG", "Vector Search", "Embeddings", "Cross-Encoder Rerank", "FAISS", "Pinecone", "Azure OpenAI"],
     context: "CMPE 255 · Data Mining · Final Project",
     highlights: [
       "Hybrid retrieval over 24,063 MedQuAD passages and 23,839 association rules.",
@@ -151,6 +164,7 @@ export const projects: Project[] = [
     featured: true,
     category: "AI / ML",
     link: "https://github.com/vineetkia/Symptom-Based-Disease-Identification-AI-Inference",
+    ascii: "vectorsearch",
   },
   {
     name: "AI Campus Marketplace",
@@ -167,6 +181,7 @@ export const projects: Project[] = [
     featured: true,
     category: "Full-Stack",
     link: "https://github.com/vineetkia/AI-Campus-Marketplace",
+    ascii: "stack",
   },
   {
     name: "TradeHub",
@@ -183,6 +198,7 @@ export const projects: Project[] = [
     featured: true,
     category: "Fintech",
     link: "https://github.com/vineetkia/TradeHub",
+    ascii: "chart",
   },
   {
     name: "Distributed Fire Query System",
@@ -199,6 +215,7 @@ export const projects: Project[] = [
     featured: true,
     category: "Distributed Systems",
     link: "https://github.com/vineetkia/Distributed-Fire-Query-System",
+    ascii: "mapreduce",
   },
   {
     name: "Study Pilot Platform",
@@ -215,6 +232,7 @@ export const projects: Project[] = [
     featured: true,
     category: "Full-Stack",
     link: "https://github.com/vineetkia/Study-Pilot-Platform",
+    ascii: "calendar",
   },
 ];
 
