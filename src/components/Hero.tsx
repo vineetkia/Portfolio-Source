@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { profile } from "@/data/portfolio";
+import { ShaderAnimation } from "@/components/ui/shader-lines";
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -32,13 +33,20 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden px-6 pt-24 pb-16"
     >
+      <ShaderAnimation className="absolute inset-0 h-full w-full" />
+
+      {/* Legibility overlays: darken the left where text sits and fade into the page below. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(16,185,129,0.14),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-zinc-950/30"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:48px_48px]"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-transparent to-zinc-950"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_50%,transparent,rgba(9,9,11,0.55))]"
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-5xl items-center gap-12 md:grid-cols-[1.4fr_1fr]">
