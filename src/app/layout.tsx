@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/data/portfolio";
-import Providers from "@/components/Providers";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,16 +61,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
         <noscript>
-          {/* Without JS, framer-motion can't reveal elements — force them visible. */}
-          <style>{`.reveal-motion{opacity:1!important;transform:none!important}`}</style>
+          {/* Without JS, scroll-reveal can't run — force all content visible. */}
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Providers>{children}</Providers>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

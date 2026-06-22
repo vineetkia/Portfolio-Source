@@ -1,199 +1,94 @@
 "use client";
 
-import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import { ArrowRight, Terminal } from "lucide-react";
 import { profile } from "@/data/portfolio";
-import { ShaderAnimation } from "@/components/ui/shader-lines";
-import {
-  GitHubIcon,
-  LinkedInIcon,
-  MailIcon,
-  DownloadIcon,
-  ArrowUpRightIcon,
-  MapPinIcon,
-} from "./icons";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import GlitchText from "@/components/GlitchText";
 
-const container: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+const ParticleField = dynamic(
+  () => import("@/components/ui/particle-field").then((m) => m.ParticleField),
+  { ssr: false }
+);
 
 export default function Hero() {
+  const [offset, setOffset] = useState(0);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      requestAnimationFrame(() => {
+        setOffset(window.scrollY * 0.3);
+        ticking.current = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-24 pb-16"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
     >
-      <ShaderAnimation className="absolute inset-0 h-full w-full" />
-
-      {/* Legibility overlays: darken the left where text sits and fade into the page below. */}
+      <ParticleField className="absolute inset-0 h-full w-full" />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-zinc-950/30"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-transparent to-zinc-950"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_55%_at_50%_55%,transparent,rgba(5,5,5,0.45))]"
       />
+
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_50%,transparent,rgba(9,9,11,0.55))]"
-      />
+        className="relative z-10 mx-auto w-full max-w-3xl animate-fade-in-long text-center"
+        style={{ transform: `translateY(${offset}px)` }}
+      >
+        <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-black/40 px-4 py-1.5 font-mono text-xs text-emerald-400 backdrop-blur-sm">
+          <Terminal className="h-3.5 w-3.5" />
+          ~/portfolio $ whoami
+        </span>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-5xl items-center gap-12 md:grid-cols-[1.4fr_1fr]">
-        <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.span
-            variants={item}
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-sm font-medium text-emerald-300"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            Open to Summer / New-Grad SWE roles
-          </motion.span>
+        <h1 className="font-heading mt-8 text-5xl font-bold tracking-tighter text-white sm:text-7xl">
+          <GlitchText text={profile.name} />
+        </h1>
 
-          <motion.h1
-            variants={item}
-            className="font-heading mt-6 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-6xl"
-          >
-            {profile.name}
-          </motion.h1>
+        <p className="mt-4 font-mono text-lg text-emerald-400 sm:text-xl">
+          <span className="text-white/30">&lt;</span>
+          {profile.role.toLowerCase().replace(/ /g, "_")}
+          <span className="text-white/30"> /&gt;</span>
+        </p>
 
-          <motion.p
-            variants={item}
-            className="mt-3 text-lg font-medium text-emerald-400 sm:text-xl"
-          >
-            {profile.role}
-          </motion.p>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/55 sm:text-lg">
+          {profile.tagline}
+        </p>
 
-          <motion.p
-            variants={item}
-            className="mt-5 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg"
-          >
-            {profile.tagline}
-          </motion.p>
-
-          <motion.div
-            variants={item}
-            className="mt-5 flex items-center gap-2 text-sm text-zinc-500"
-          >
-            <MapPinIcon className="h-4 w-4" />
-            {profile.location}
-          </motion.div>
-
-          <motion.div
-            variants={item}
-            className="mt-8 flex flex-wrap items-center gap-3"
-          >
-            <a
-              href="#projects"
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-emerald-400"
-            >
-              View my work
-              <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-700 px-5 py-2.5 text-sm font-semibold text-zinc-200 transition-colors hover:border-zinc-500 hover:bg-zinc-900"
-            >
-              <DownloadIcon className="h-4 w-4" />
-              Résumé
-            </a>
-          </motion.div>
-
-          <motion.div variants={item} className="mt-8 flex items-center gap-4">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="cursor-pointer text-zinc-500 transition-colors hover:text-zinc-100"
-            >
-              <GitHubIcon className="h-5 w-5" />
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="cursor-pointer text-zinc-500 transition-colors hover:text-zinc-100"
-            >
-              <LinkedInIcon className="h-5 w-5" />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="cursor-pointer text-zinc-500 transition-colors hover:text-zinc-100"
-            >
-              <MailIcon className="h-5 w-5" />
-            </a>
-          </motion.div>
-        </motion.div>
-
-        <div className="flex justify-center md:justify-end">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="relative"
-          >
-            <div
-              aria-hidden
-              className="absolute -inset-3 rounded-full bg-gradient-to-tr from-emerald-500/30 via-emerald-500/5 to-transparent blur-2xl"
-            />
-            <div className="relative h-56 w-56 overflow-hidden rounded-full border border-zinc-700/80 shadow-2xl shadow-emerald-950/40 sm:h-72 sm:w-72">
-              <Image
-                src={profile.photo}
-                alt={`Portrait of ${profile.name}`}
-                fill
-                priority
-                sizes="(max-width: 640px) 14rem, 18rem"
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <LiquidButton href="#projects" variant="accent" size="lg">
+            View Work
+            <ArrowRight className="h-4 w-4" />
+          </LiquidButton>
+          <LiquidButton href="#contact" size="lg">
+            Get in touch
+          </LiquidButton>
         </div>
       </div>
 
-      <motion.a
-        href="#about"
-        aria-label="Scroll to about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 cursor-pointer text-zinc-600 transition-colors hover:text-zinc-300 sm:block"
-      >
-        <motion.span
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="block"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6"
-            aria-hidden
-          >
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
-        </motion.span>
-      </motion.a>
+      {/* terminal status bar */}
+      <div className="absolute inset-x-0 bottom-0 z-10 hidden border-t border-white/5 bg-black/40 backdrop-blur-sm sm:block">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 font-mono text-[11px] text-white/40">
+          <span className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            status: available_for_hire
+          </span>
+          <span className="hidden sm:inline">{profile.location}</span>
+          <span>lat: 37.33 · lon: -121.88</span>
+        </div>
+      </div>
     </section>
   );
 }

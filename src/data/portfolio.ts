@@ -188,7 +188,7 @@ export const projects: Project[] = [
       "6-process, 3-tier hierarchical query system with gRPC streaming and C++/Python interop.",
       "Overlay network with Bully leader election, health checks, and work redistribution.",
     ],
-    featured: false,
+    featured: true,
     category: "Distributed Systems",
   },
   {
