@@ -88,7 +88,8 @@ across 12 client accounts in the futures market.
 
 ## Experience
 
-- **Software Engineer Intern — Microsoft** · Bay Area · 2026–Present *(current; confirm title/dates)*
+- **Software Engineer Intern — Microsoft** · Redmond, WA (On-site) · May 2026–Present
+  - Software engineering intern on the Microsoft Security IQ team (formerly Sentinel Platform).
 - **Software Development Engineer — ION Trading** · Pune, India · Jan 2022 – Aug 2025
   - C# desktop interface for market data (XML); setup 1 week → 10 min.
   - Apache Camel + Java trade framework; Kafka + ActiveMQ for ExxonMobil real-time trade data.
