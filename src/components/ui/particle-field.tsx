@@ -18,16 +18,16 @@ export function ParticleField({ className }: { className?: string }) {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const GRID = 140;
-    const SEP = 0.28;
+    const GRID = 200;
+    const SEP = 0.2;
     const count = GRID * GRID;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050505, 0.085);
+    scene.fog = new THREE.FogExp2(0x050505, 0.09);
 
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-    camera.position.set(0, 5.5, 10);
-    camera.lookAt(0, -1, 0);
+    camera.position.set(0, 4.2, 9);
+    camera.lookAt(0, -0.6, 0);
 
     const positions = new Float32Array(count * 3);
     const baseXZ = new Float32Array(count * 2);
@@ -61,7 +61,7 @@ export function ParticleField({ className }: { className?: string }) {
     geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 0.07,
+      size: 0.045,
       vertexColors: true,
       transparent: true,
       opacity: 0.95,
@@ -115,14 +115,14 @@ export function ParticleField({ className }: { className?: string }) {
         const z = baseXZ[i * 2 + 1];
 
         let y =
-          Math.sin(x * 0.6 + time) * 0.45 +
-          Math.cos(z * 0.5 - time * 0.8) * 0.45 +
-          Math.sin((x + z) * 0.3 + time * 0.5) * 0.3;
+          Math.sin(x * 0.55 + time) * 0.16 +
+          Math.cos(z * 0.5 - time * 0.8) * 0.16 +
+          Math.sin((x + z) * 0.3 + time * 0.5) * 0.1;
 
         const dx = x - mxWorld;
         const dz = z - mzWorld;
         const d2 = dx * dx + dz * dz;
-        const repel = Math.exp(-d2 * 0.25) * 2.2;
+        const repel = Math.exp(-d2 * 0.5) * 0.8;
         y += repel;
 
         arr[i * 3 + 1] = y;

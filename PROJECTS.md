@@ -86,6 +86,25 @@ across 12 client accounts in the futures market.
 
 ---
 
+## Startup — TrueStar (Co-Founder & Engineer)
+
+**TrueStar** is an AI-native expert research platform. A researcher posts a brief; the platform
+runs two research tracks in parallel and merges them into one cited report:
+- **Primary — live AI-moderated expert interviews.** A voice agent (Aria) interviews vetted human
+  experts over LiveKit (~10 min, sub-second round-trip), paying them per interview via Stripe Connect.
+- **Secondary — TARS multi-agent web research.** Four adversarial agents (Data Scientist,
+  Investigative Journalist, Domain Expert, Devil's Advocate) research, debate, cross-check, and
+  synthesize a verdict with cited sources, a hallucination audit, and a grounding score.
+
+Four microservices on a shared Docker network: `truestar-app` (React 19 SPA + Express API + Postgres
++ Redis), `core-ingest-rag-agent` (FastAPI + Pinecone RAG), `truestar-research` (TARS, FastAPI +
+Tavily), `truestar-voice` (LiveKit + Deepgram + Azure OpenAI + Fish Audio).
+**Stack:** React 19, Vite, Tailwind 4, Express, PostgreSQL 17, Redis, Azure OpenAI, Pinecone, Cohere
+Rerank 3.5, Tavily, LiveKit, Deepgram, Stripe Connect, Drizzle, Docker.
+**Repo:** https://github.com/vineetkia/truestar-app
+
+---
+
 ## Experience
 
 - **Software Engineer Intern — Microsoft** · Redmond, WA (On-site) · May 2026–Present

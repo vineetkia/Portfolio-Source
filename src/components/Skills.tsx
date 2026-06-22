@@ -67,7 +67,7 @@ export default function Skills() {
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 04 — skills"}
+            {"// 05 — skills"}
           </div>
           <GlitchText
             as="h2"

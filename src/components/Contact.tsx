@@ -36,7 +36,7 @@ export default function Contact() {
       <div className="relative z-10 mx-auto w-full max-w-2xl px-6">
         <Reveal className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-xl sm:p-12">
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 05 — contact"}
+            {"// 06 — contact"}
           </div>
           <h2 className="font-heading mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Let&apos;s Build Something

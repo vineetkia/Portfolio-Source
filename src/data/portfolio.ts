@@ -97,8 +97,11 @@ export type Project = {
   highlights: string[];
   featured: boolean;
   category: "AI / ML" | "Distributed Systems" | "Full-Stack" | "Systems" | "Fintech";
-  github?: string;
+  link?: string;
 };
+
+// Featured projects are ordered by most in-demand skills:
+// AI/ML → Distributed Systems → Full-Stack → Fintech → Systems.
 
 export const projects: Project[] = [
   {
@@ -115,6 +118,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "AI / ML",
+    link: "https://github.com/vineetkia/CMPE-280-Team-14-Final-Project",
   },
   {
     name: "Mesh Control",
@@ -130,6 +134,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Distributed Systems",
+    link: "https://github.com/vineetkia/CMPE-273-Self-Healing-Microservice-Mesh-Final-Project",
   },
   {
     name: "Medical Diagnostic Assistant",
@@ -160,6 +165,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Full-Stack",
+    link: "https://github.com/gopinathsjsu/team-project-cmpe202-03-fall2025-commandlinecommando",
   },
   {
     name: "TradeHub",
@@ -220,6 +226,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     category: "Full-Stack",
+    link: "https://github.com/vineetkia/CMPE-280-Team-14-Hackathon",
   },
   {
     name: "SaaS Accelerator Platform",
@@ -250,6 +257,47 @@ export const projects: Project[] = [
     category: "Fintech",
   },
 ];
+
+export const startup = {
+  name: "TrueStar",
+  role: "Co-Founder & Engineer",
+  tagline: "An AI-native expert research platform.",
+  description:
+    "TrueStar runs two research tracks in parallel and merges them into one cited report. Primary research is live, AI-moderated expert interviews — a voice agent named Aria interviews vetted human experts over LiveKit, paying them per interview via Stripe Connect. Secondary research is TARS: four specialized AI agents that independently research the open web, debate their findings, cross-check claims, and produce a synthesis with a hallucination audit and grounding score.",
+  highlights: [
+    {
+      title: "Aria — real-time voice interviewer",
+      body: "Sub-second voice agent over LiveKit WebRTC (Deepgram STT · Azure OpenAI · Fish Audio TTS) conducting ~10-minute expert interviews.",
+    },
+    {
+      title: "TARS — multi-agent fact verification",
+      body: "Four adversarial agents (Data Scientist, Investigative Journalist, Domain Expert, Devil's Advocate) debate, reflect, and synthesize an auditable verdict with cited sources.",
+    },
+    {
+      title: "RAG document intelligence",
+      body: "Namespace-scoped retrieval over expert documents — text-embedding-3-large into Pinecone with Cohere Rerank 3.5.",
+    },
+    {
+      title: "Production microservices",
+      body: "Four services on a shared Docker network: React 19 SPA + Express API, FastAPI RAG, FastAPI multi-agent orchestrator, and the voice worker.",
+    },
+  ],
+  tags: [
+    "React 19",
+    "Express",
+    "PostgreSQL 17",
+    "Redis",
+    "Azure OpenAI",
+    "Pinecone",
+    "Cohere Rerank",
+    "Tavily",
+    "LiveKit",
+    "Deepgram",
+    "Stripe Connect",
+    "Docker",
+  ],
+  link: "https://github.com/vineetkia/truestar-app",
+};
 
 export type SkillGroup = { title: string; items: string[] };
 

@@ -5,11 +5,21 @@ import { ArrowUpRight } from "lucide-react";
 import { projects, profile, type Project } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import GlitchText from "./GlitchText";
+import AsciiAnimation from "./AsciiAnimation";
 
 const ShaderAnimation = dynamic(
   () => import("@/components/ui/shader-lines").then((m) => m.ShaderAnimation),
   { ssr: false }
 );
+
+// Most in-demand skills first.
+const CATEGORY_ORDER: Project["category"][] = [
+  "AI / ML",
+  "Distributed Systems",
+  "Full-Stack",
+  "Fintech",
+  "Systems",
+];
 
 const categoryGradient: Record<Project["category"], string> = {
   "AI / ML": "from-emerald-500/40 via-teal-500/20 to-transparent",
@@ -63,7 +73,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </ul>
 
         <a
-          href={profile.github}
+          href={project.link ?? profile.github}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
@@ -77,7 +87,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function Projects() {
-  const featured = projects.filter((p) => p.featured);
+  const featured = [...projects]
+    .filter((p) => p.featured)
+    .sort(
+      (a, b) =>
+        CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)
+    );
 
   return (
     <section
@@ -90,7 +105,7 @@ export default function Projects() {
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 03 — projects"}
+            {"// 04 — projects"}
           </div>
           <GlitchText
             as="h2"
@@ -98,12 +113,16 @@ export default function Projects() {
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
           <p className="mt-3 max-w-2xl text-white/60">
-            From self-healing distributed systems to AI-powered platforms — a
-            sample of what I&apos;ve built across graduate studies and beyond.
+            Ordered by today&apos;s most in-demand skills — AI/ML and distributed
+            systems first. Every card links to its repo.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="mt-8 overflow-hidden rounded-xl border border-white/5 bg-black/30">
+          <AsciiAnimation className="px-4 py-3 text-[9px] sm:text-[11px]" />
+        </Reveal>
+
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((project, i) => (
             <ProjectCard key={project.name} project={project} index={i} />
           ))}

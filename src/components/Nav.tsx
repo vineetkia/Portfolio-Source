@@ -8,6 +8,7 @@ const links = [
   { href: "#top", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
+  { href: "#startup", label: "TrueStar" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
@@ -49,7 +50,7 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
             <span className="text-emerald-400">.</span>
           </a>
 
-          <ul className="hidden items-center gap-8 md:flex">
+          <ul className="hidden items-center gap-5 md:flex lg:gap-7">
             {links.map((link) => (
               <li key={link.href}>
                 <a
@@ -66,7 +67,7 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20 md:inline-block"
+            className="hidden rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20 lg:inline-block"
           >
             Résumé
           </a>

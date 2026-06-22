@@ -36,7 +36,7 @@ export function TerminalLoader({ onComplete }: { onComplete: () => void }) {
       if (doneRef.current) return;
       doneRef.current = true;
       setWiping(true);
-      setTimeout(onComplete, 700);
+      setTimeout(onComplete, 900);
     };
 
     if (prefersReduced) {
@@ -80,7 +80,10 @@ export function TerminalLoader({ onComplete }: { onComplete: () => void }) {
       className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505]"
       style={{
         clipPath: wiping ? "inset(0 0 100% 0)" : "inset(0 0 0% 0)",
-        transition: "clip-path 0.7s cubic-bezier(0.76,0,0.24,1)",
+        opacity: wiping ? 0 : 1,
+        filter: wiping ? "blur(6px)" : "blur(0px)",
+        transition:
+          "clip-path 0.9s cubic-bezier(0.76,0,0.24,1), opacity 0.9s ease, filter 0.9s ease",
       }}
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 fx-scanlines opacity-60" />
