@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { projects, type Project } from "@/data/portfolio";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
@@ -14,12 +15,27 @@ const CATEGORIES = [
   "Systems",
 ] as const;
 
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, scale: 0.98, transition: { duration: 0.2 } },
+};
+
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-zinc-900/70">
+    <motion.article
+      layout
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -6 }}
+      className="group flex h-full cursor-default flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition-colors duration-300 hover:border-emerald-500/40 hover:bg-zinc-900/70"
+    >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100 transition-colors group-hover:text-emerald-400">
+          <h3 className="font-heading text-lg font-semibold text-zinc-100 transition-colors group-hover:text-emerald-400">
             {project.name}
           </h3>
           <p className="mt-1 font-mono text-xs text-zinc-500">
@@ -57,7 +73,7 @@ function ProjectCard({ project }: { project: Project }) {
           </li>
         ))}
       </ul>
-    </article>
+    </motion.article>
   );
 }
 
@@ -91,7 +107,7 @@ export default function Projects() {
               type="button"
               onClick={() => setActive(cat)}
               aria-pressed={isActive}
-              className={`rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
+              className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
                 isActive
                   ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-300"
                   : "border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
@@ -103,13 +119,13 @@ export default function Projects() {
         })}
       </Reveal>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        {filtered.map((project) => (
-          <Reveal as="div" key={project.name} className="h-full">
-            <ProjectCard project={project} />
-          </Reveal>
-        ))}
-      </div>
+      <motion.div layout className="grid gap-5 sm:grid-cols-2">
+        <AnimatePresence mode="popLayout">
+          {filtered.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </section>
   );
 }

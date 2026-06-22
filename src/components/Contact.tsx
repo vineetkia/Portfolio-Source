@@ -49,7 +49,7 @@ export default function Contact() {
 
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-center">
           <Reveal>
-            <h3 className="text-2xl font-semibold tracking-tight text-zinc-100 sm:text-3xl">
+            <h3 className="font-heading text-2xl font-semibold tracking-tight text-zinc-100 sm:text-3xl">
               Let&apos;s build something.
             </h3>
             <p className="mt-4 max-w-md text-zinc-400">

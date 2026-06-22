@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
 import { profile } from "@/data/portfolio";
 import {
   GitHubIcon,
@@ -8,6 +11,20 @@ import {
   ArrowUpRightIcon,
   MapPinIcon,
 } from "./icons";
+
+const container: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function Hero() {
   return (
@@ -25,36 +42,54 @@ export default function Hero() {
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-5xl items-center gap-12 md:grid-cols-[1.4fr_1fr]">
-        <div className="animate-fade-up">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-sm font-medium text-emerald-300">
+        <motion.div variants={container} initial="hidden" animate="visible">
+          <motion.span
+            variants={item}
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-sm font-medium text-emerald-300"
+          >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
             Open to Summer / New-Grad SWE roles
-          </span>
+          </motion.span>
 
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-6xl">
+          <motion.h1
+            variants={item}
+            className="font-heading mt-6 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-6xl"
+          >
             {profile.name}
-          </h1>
+          </motion.h1>
 
-          <p className="mt-3 text-lg font-medium text-emerald-400 sm:text-xl">
+          <motion.p
+            variants={item}
+            className="mt-3 text-lg font-medium text-emerald-400 sm:text-xl"
+          >
             {profile.role}
-          </p>
+          </motion.p>
 
-          <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg">
+          <motion.p
+            variants={item}
+            className="mt-5 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg"
+          >
             {profile.tagline}
-          </p>
+          </motion.p>
 
-          <div className="mt-5 flex items-center gap-2 text-sm text-zinc-500">
+          <motion.div
+            variants={item}
+            className="mt-5 flex items-center gap-2 text-sm text-zinc-500"
+          >
             <MapPinIcon className="h-4 w-4" />
             {profile.location}
-          </div>
+          </motion.div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <motion.div
+            variants={item}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
             <a
               href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-emerald-400"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-emerald-400"
             >
               View my work
               <ArrowUpRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -63,20 +98,20 @@ export default function Hero() {
               href={profile.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-5 py-2.5 text-sm font-semibold text-zinc-200 transition-colors hover:border-zinc-500 hover:bg-zinc-900"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-zinc-700 px-5 py-2.5 text-sm font-semibold text-zinc-200 transition-colors hover:border-zinc-500 hover:bg-zinc-900"
             >
               <DownloadIcon className="h-4 w-4" />
               Résumé
             </a>
-          </div>
+          </motion.div>
 
-          <div className="mt-8 flex items-center gap-4">
+          <motion.div variants={item} className="mt-8 flex items-center gap-4">
             <a
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-zinc-500 transition-colors hover:text-zinc-100"
+              className="cursor-pointer text-zinc-500 transition-colors hover:text-zinc-100"
             >
               <GitHubIcon className="h-5 w-5" />
             </a>
@@ -85,22 +120,27 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-zinc-500 transition-colors hover:text-zinc-100"
+              className="cursor-pointer text-zinc-500 transition-colors hover:text-zinc-100"
             >
               <LinkedInIcon className="h-5 w-5" />
             </a>
             <a
               href={`mailto:${profile.email}`}
               aria-label="Email"
-              className="text-zinc-500 transition-colors hover:text-zinc-100"
+              className="cursor-pointer text-zinc-500 transition-colors hover:text-zinc-100"
             >
               <MailIcon className="h-5 w-5" />
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="flex justify-center md:justify-end">
-          <div className="relative animate-fade-up [animation-delay:120ms]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="relative"
+          >
             <div
               aria-hidden
               className="absolute -inset-3 rounded-full bg-gradient-to-tr from-emerald-500/30 via-emerald-500/5 to-transparent blur-2xl"
@@ -115,9 +155,37 @@ export default function Hero() {
                 className="object-cover"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      <motion.a
+        href="#about"
+        aria-label="Scroll to about"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 cursor-pointer text-zinc-600 transition-colors hover:text-zinc-300 sm:block"
+      >
+        <motion.span
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="block"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-6 w-6"
+            aria-hidden
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </motion.span>
+      </motion.a>
     </section>
   );
 }

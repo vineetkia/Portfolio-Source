@@ -12,6 +12,7 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-space-grotesk);
 }
 
 html {
@@ -55,34 +56,8 @@ body {
   }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.reveal {
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-/* Only hide pre-reveal when JS is active, so no-JS users still see everything. */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-}
-.js .reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  .animate-fade-up,
-  .reveal {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 }
