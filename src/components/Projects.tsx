@@ -4,7 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 import { projects, profile, type Project } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import GlitchText from "./GlitchText";
-import AsciiAnimation, { type AsciiVariant } from "./AsciiAnimation";
+import AsciiAnimation from "./AsciiAnimation";
+import ProjectAscii, { type AsciiTheme } from "./ProjectAscii";
 import Aurora from "./Aurora";
 
 // Most in-demand skills first.
@@ -16,16 +17,16 @@ const CATEGORY_ORDER: Project["category"][] = [
   "Systems",
 ];
 
-// Each category gets its own ASCII pattern + accent tint so every card differs.
+// Each category maps to a thematic ASCII scene + accent tint.
 const categoryAscii: Record<
   Project["category"],
-  { variant: AsciiVariant; color: string; tint: string }
+  { theme: AsciiTheme; color: string; tint: string }
 > = {
-  "AI / ML": { variant: "plasma", color: "text-emerald-400/45", tint: "from-emerald-500/25" },
-  "Distributed Systems": { variant: "rings", color: "text-sky-400/45", tint: "from-sky-500/25" },
-  "Full-Stack": { variant: "waves", color: "text-violet-400/45", tint: "from-violet-500/25" },
-  Fintech: { variant: "rain", color: "text-amber-400/45", tint: "from-amber-500/25" },
-  Systems: { variant: "grid", color: "text-zinc-300/40", tint: "from-zinc-400/25" },
+  "AI / ML": { theme: "ai", color: "text-emerald-400/70", tint: "from-emerald-500/20" },
+  "Distributed Systems": { theme: "distributed", color: "text-sky-400/70", tint: "from-sky-500/20" },
+  "Full-Stack": { theme: "fullstack", color: "text-violet-400/70", tint: "from-violet-500/20" },
+  Fintech: { theme: "fintech", color: "text-amber-400/75", tint: "from-amber-500/20" },
+  Systems: { theme: "fullstack", color: "text-zinc-300/70", tint: "from-zinc-400/20" },
 };
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
@@ -33,23 +34,22 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <Reveal
       as="article"
-      delay={index * 120}
+      delay={index * 100}
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-500/40 hover:bg-white/[0.08]"
     >
-      <div className="relative flex h-36 items-end overflow-hidden bg-black">
-        <AsciiAnimation
-          variant={ascii.variant}
-          seed={index * 7}
-          rows={16}
-          cols={70}
-          speed={1}
-          className={`absolute inset-0 px-2 py-1 text-[8px] tracking-tighter ${ascii.color} transition-opacity duration-300 group-hover:opacity-100 opacity-80`}
-        />
+      <div className="relative flex h-36 items-end justify-center overflow-hidden bg-black">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <ProjectAscii
+            theme={ascii.theme}
+            seed={index * 5}
+            className={`text-[8.5px] tracking-tight ${ascii.color} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
+          />
+        </div>
         <div
           aria-hidden
-          className={`absolute inset-0 bg-gradient-to-t ${ascii.tint} via-transparent to-black/40`}
+          className={`pointer-events-none absolute inset-0 bg-gradient-to-t ${ascii.tint} via-transparent to-black/50`}
         />
-        <span className="relative m-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
+        <span className="relative z-10 m-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur-sm">
           {project.category}
         </span>
       </div>
@@ -91,12 +91,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function Projects() {
-  const featured = [...projects]
-    .filter((p) => p.featured)
-    .sort(
-      (a, b) =>
-        CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)
-    );
+  const ordered = [...projects].sort(
+    (a, b) =>
+      CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category)
+  );
 
   return (
     <section
@@ -129,7 +127,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((project, i) => (
+          {ordered.map((project, i) => (
             <ProjectCard key={project.name} project={project} index={i} />
           ))}
         </div>

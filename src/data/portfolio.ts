@@ -118,7 +118,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "AI / ML",
-    link: "https://github.com/vineetkia/CMPE-280-Team-14-Final-Project",
+    link: "https://github.com/vineetkia/Hyrd-AI-Career-Platform",
   },
   {
     name: "Mesh Control",
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Distributed Systems",
-    link: "https://github.com/vineetkia/CMPE-273-Self-Healing-Microservice-Mesh-Final-Project",
+    link: "https://github.com/vineetkia/Self-Healing-AI-Microservice-Mesh",
   },
   {
     name: "Medical Diagnostic Assistant",
@@ -150,9 +150,10 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "AI / ML",
+    link: "https://github.com/vineetkia/Symptom-Based-Disease-Identification-AI-Inference",
   },
   {
-    name: "Campus Marketplace",
+    name: "AI Campus Marketplace",
     blurb: "A full-stack marketplace for SJSU students to buy and sell essentials.",
     description:
       "A modular, microservice-based marketplace where students buy and sell textbooks, electronics, and gadgets — featuring AI-powered product search, real-time chat, role-based auth, and image storage, deployed on auto-scaling AWS infrastructure.",
@@ -165,7 +166,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Full-Stack",
-    link: "https://github.com/gopinathsjsu/team-project-cmpe202-03-fall2025-commandlinecommando",
+    link: "https://github.com/vineetkia/AI-Campus-Marketplace",
   },
   {
     name: "TradeHub",
@@ -181,6 +182,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Fintech",
+    link: "https://github.com/vineetkia/TradeHub",
   },
   {
     name: "Distributed Fire Query System",
@@ -196,24 +198,10 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Distributed Systems",
+    link: "https://github.com/vineetkia/Distributed-Fire-Query-System",
   },
   {
-    name: "Log Analyzer",
-    blurb: "A Java CLI that classifies and aggregates heterogeneous log streams.",
-    description:
-      "A command-line application that parses intermingled APM metrics, application events, and HTTP request logs from a single file and generates type-specific JSON analytics — built on the Chain of Responsibility and Strategy patterns for runtime extensibility.",
-    tags: ["Java 17", "Maven", "Design Patterns", "JUnit"],
-    context: "CMPE 202 · Individual Project",
-    highlights: [
-      "Chain of Responsibility for runtime log classification; Strategy for swappable aggregation.",
-      "Computes statistics, percentiles, and status-code categorization per log type.",
-      "40 unit tests with graceful handling of corrupted and malformed entries.",
-    ],
-    featured: false,
-    category: "Systems",
-  },
-  {
-    name: "StudyPilot",
+    name: "Study Pilot Platform",
     blurb: "An academic co-pilot unifying tasks, calendar, and AI study help.",
     description:
       "A student productivity hub bringing tasks, assignments, a color-coded calendar, and an Azure OpenAI study assistant into one responsive, accessible dashboard with full light/dark theming.",
@@ -224,37 +212,9 @@ export const projects: Project[] = [
       "Custom monthly calendar with color-coded events and an assignment tracker.",
       "WCAG AA accessibility with semantic HTML, ARIA labels, and keyboard navigation.",
     ],
-    featured: false,
+    featured: true,
     category: "Full-Stack",
-    link: "https://github.com/vineetkia/CMPE-280-Team-14-Hackathon",
-  },
-  {
-    name: "SaaS Accelerator Platform",
-    blurb: "A founder-built SaaS platform for selling subscription digital products.",
-    description:
-      "A SaaS platform enabling entrepreneurs to sell digital products on recurring monthly, quarterly, and yearly subscriptions, with integrated payments via Razorpay and Stripe.",
-    tags: ["React", "Next.js", "Prisma", "PostgreSQL", "Tailwind", "Stripe", "Razorpay"],
-    context: "Personal · Founder",
-    highlights: [
-      "Recurring subscription billing across multiple intervals.",
-      "Dual payment-gateway integration with Stripe and Razorpay SDKs.",
-    ],
-    featured: false,
-    category: "Full-Stack",
-  },
-  {
-    name: "Binance Crypto Trade Bot",
-    blurb: "A multi-threaded crypto trading bot managing 12 client accounts.",
-    description:
-      "A multi-threaded cryptocurrency trading bot built on the Binance API, enabling seamless management of long and short positions and P&L adjustments across 12 client accounts in the futures market.",
-    tags: ["Python", "Binance API", "Multithreading", "Futures Trading"],
-    context: "Personal Project",
-    highlights: [
-      "Concurrent management of long/short positions across 12 accounts.",
-      "Automated P&L adjustments in the futures market.",
-    ],
-    featured: false,
-    category: "Fintech",
+    link: "https://github.com/vineetkia/Study-Pilot-Platform",
   },
 ];
 
@@ -296,7 +256,7 @@ export const startup = {
     "Stripe Connect",
     "Docker",
   ],
-  link: "https://github.com/vineetkia/truestar-app",
+  link: "https://truestar.tech",
 };
 
 export type SkillGroup = { title: string; items: string[] };

@@ -18,6 +18,7 @@ mock interviews, and a post-interview performance dashboard scoring six dimensio
 (clarity, confidence, relevance, structure, technical depth, pace).
 **Stack:** Next.js 15, TypeScript, PostgreSQL 16, Azure OpenAI (GPT-5), Cartesia Sonic-2 (TTS),
 Docker, Framer Motion.
+**Repo:** https://github.com/vineetkia/Hyrd-AI-Career-Platform
 
 ### 2. Mesh Control — Self-Healing Microservice Mesh · CMPE 273 (Final)
 A gRPC service mesh with AI-driven root-cause analysis and autonomous remediation. Detects
@@ -28,6 +29,7 @@ drives reasoning while a deterministic rule engine guarantees safety. 16 Docker 
 NATS, etcd, Docker Compose.
 **My role:** Docker orchestration, gRPC proto contracts, resilience primitives
 (retry/timeout/circuit-breaker), root-cause algorithm, dashboard + dependency-graph viz.
+**Repo:** https://github.com/vineetkia/Self-Healing-AI-Microservice-Mesh
 
 ### 3. Record-Based Medical Diagnostic Assistant · CMPE 255 (Final)
 A clinical decision-support pipeline: given a patient's symptoms, it ranks likely diseases and
@@ -35,20 +37,23 @@ shows the evidence behind each ranking — the FP-Growth association rule that f
 biomedical passages retrieved from MedQuAD. Designed so every prediction is auditable.
 **Stack:** Next.js 14, TypeScript, Tailwind, FastAPI (Python 3.11), FAISS / Pinecone vector
 stores, Azure OpenAI embeddings + GPT, cross-encoder rerank. 24,063 passages, 23,839 rules.
+**Repo:** https://github.com/vineetkia/Symptom-Based-Disease-Identification-AI-Inference
 
-### 4. Campus Marketplace · CMPE 202 (Group, Team Lead)
+### 4. AI Campus Marketplace · CMPE 202 (Group, Team Lead)
 A full-stack, microservice marketplace for SJSU students to buy/sell textbooks, electronics,
 and essentials — with AI product search, real-time chat, role-based auth, and S3 image storage,
 deployed on auto-scaling AWS.
 **Stack:** Java/Spring, React, PostgreSQL, Redis, Docker, Nginx, AWS (EC2 auto-scaling, ALB, S3), JWT.
 **My role:** Team lead; auth/authz backend (40+ tests), AI search microservice, AWS architecture
 & deployment, Docker/DevOps integration.
+**Repo:** https://github.com/vineetkia/AI-Campus-Marketplace
 
 ### 5. TradeHub — Real-time Trading Platform · CMPE 272
 A professional web trading app with live stock & crypto market data, portfolio management,
 P&L analytics, and secure auth, powered by Python microservices.
 **Stack:** React 18, Vite, Tailwind, Radix UI, Express, PostgreSQL, Drizzle ORM, JWT + TOTP 2FA,
 WebSocket, Python/FastAPI microservices (price stream, news feed, P&L report).
+**Repo:** https://github.com/vineetkia/TradeHub
 
 ### 6. Distributed Fire Query System · CMPE 275 (Mini 1–3)
 A three-part distributed-systems study on California wildfire air-quality data (1.17M records):
@@ -58,31 +63,13 @@ A three-part distributed-systems study on California wildfire air-quality data (
 - **Mini-3:** Overlay-network query system with Bully leader election, health checks, and
   fault-tolerant work redistribution with exponential backoff.
 **Stack:** C++, Python, gRPC, OpenMP, POSIX shared memory.
+**Repo:** https://github.com/vineetkia/Distributed-Fire-Query-System
 
-### 7. Log Analyzer · CMPE 202 (Individual)
-A Java CLI that classifies and aggregates intermingled APM metrics, application events, and HTTP
-request logs from a single file into type-specific JSON analytics. Built on Chain of
-Responsibility + Strategy patterns; 40 unit tests.
-**Stack:** Java 17, Maven, JUnit.
-
-### 8. StudyPilot — Academic Co-Pilot · CMPE 280 (Hackathon)
+### 7. Study Pilot Platform — Academic Co-Pilot · CMPE 280 (Hackathon)
 A unified student productivity hub: dashboard, todo CRUD, color-coded calendar, assignment
 tracker, and an Azure OpenAI study assistant, with full dark mode and WCAG AA accessibility.
 **Stack:** Next.js 14, TypeScript, Material UI v6, react-hook-form + zod, Azure OpenAI, Vercel.
-
----
-
-## Personal Projects
-
-### 9. SaaS Accelerator Platform (Founder)
-A SaaS platform letting entrepreneurs sell digital products on recurring monthly/quarterly/yearly
-subscriptions, with Razorpay + Stripe payments.
-**Stack:** React, Next.js, Prisma, PostgreSQL, Tailwind, Razorpay, Stripe SDK.
-
-### 10. Binance Crypto Trade Bot
-A multi-threaded crypto trading bot on the Binance API managing long/short positions and P&L
-across 12 client accounts in the futures market.
-**Stack:** Python, Binance API, multithreading.
+**Repo:** https://github.com/vineetkia/Study-Pilot-Platform
 
 ---
 
@@ -101,7 +88,7 @@ Four microservices on a shared Docker network: `truestar-app` (React 19 SPA + Ex
 Tavily), `truestar-voice` (LiveKit + Deepgram + Azure OpenAI + Fish Audio).
 **Stack:** React 19, Vite, Tailwind 4, Express, PostgreSQL 17, Redis, Azure OpenAI, Pinecone, Cohere
 Rerank 3.5, Tavily, LiveKit, Deepgram, Stripe Connect, Drizzle, Docker.
-**Repo:** https://github.com/vineetkia/truestar-app
+**Repo:** Private · Live at https://truestar.tech
 
 ---
 
