@@ -4,10 +4,10 @@
 export const profile = {
   name: "Vineet Kumar",
   initials: "VK",
-  role: "Software Engineer",
-  tagline: "Software engineer building distributed systems, AI-powered platforms, and the occasional trading bot.",
+  role: "AI Software Engineer",
+  tagline: "AI software engineer building agentic, AI-native platforms on top of resilient distributed systems.",
   intro:
-    "I'm a software engineer with 3+ years of experience shipping production systems in financial technology. I'm currently pursuing my Master's in Computer Software Engineering at San Jose State University in the Bay Area, and interning at Microsoft.",
+    "I'm a software engineer with 3+ years of experience shipping production systems in financial technology. I'm currently pursuing my Master's in Computer Software Engineering at San Jose State University in the Bay Area, after a 2026 software-engineering internship at Microsoft.",
   location: "San Francisco Bay Area, CA",
   photo: "/vineet-kumar.jpeg",
   email: "vineetkia@gmail.com",
@@ -21,7 +21,7 @@ export const about = {
   paragraphs: [
     "I spent three and a half years at ION Trading building trade-processing systems for global financial institutions — working across C#, Java, and C++, integrating Kafka and ActiveMQ for real-time data exchange, and automating infrastructure that cut multi-week processes down to minutes.",
     "Now I'm at San Jose State University earning my Master's in Computer Software Engineering, where I've built everything from a self-healing microservice mesh with AI-driven root-cause analysis to a clinical decision-support engine with auditable diagnoses. I care about clean architecture, distributed systems, and using AI where it genuinely earns its place.",
-    "Outside coursework, I'm interning at Microsoft, mentoring engineers, and shipping side projects ranging from SaaS platforms to crypto trading bots.",
+    "Beyond coursework, I recently interned at Microsoft, mentor engineers, and ship side projects ranging from SaaS platforms to crypto trading bots.",
   ],
   stats: [
     { value: "3+", label: "Years in tech" },
@@ -47,14 +47,15 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     company: "Microsoft",
     location: "Redmond, Washington · On-site",
-    period: "May 2026 — Present",
-    current: true,
+    period: "May 2026 — Aug 2026",
     summary:
-      "Software engineering intern on the Microsoft Security IQ team (formerly Sentinel Platform).",
+      "Software engineering intern on the Microsoft Security IQ team (formerly the Sentinel Platform), building the large-scale data-ingestion platform that powers Microsoft Sentinel's data lake.",
     highlights: [
-      "Building on the Microsoft Security IQ team (formerly the Sentinel Platform), contributing to security tooling at cloud scale.",
+      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 82K shared-tenant pipelines onto right-sized Kubernetes compute — engineered to raise fleet CPU utilization about 5x (11% to 59%) and cut compute cost.",
+      "Architected a two-step, config-driven placement algorithm with a network-boundary (VNet) match guard that structurally prevents mis-routing across isolated networks, shipped behind feature flags for zero-downtime, reversible rollout.",
+      "Led a data-driven design correction — analyzing 603K production runs over 30 days in Kusto (ADX) on Azure Data Lake — then hardened it with 22 integration tests and a classifier suite.",
     ],
-    tags: ["Software Engineering", "Security", "Azure", "Cloud"],
+    tags: ["C#", ".NET", "Kubernetes", "Kusto (ADX)", "Azure Data Lake", "Distributed Systems", "Feature Flags"],
   },
   {
     role: "Software Development Engineer",
@@ -167,8 +168,8 @@ export const projects: Project[] = [
     ascii: "vectorsearch",
   },
   {
-    name: "AI Campus Marketplace",
-    blurb: "A full-stack marketplace for SJSU students to buy and sell essentials.",
+    name: "AI Assisted Marketplace",
+    blurb: "A full-stack, AI-assisted marketplace for buying and selling student essentials.",
     description:
       "A modular, microservice-based marketplace where students buy and sell textbooks, electronics, and gadgets — featuring AI-powered product search, real-time chat, role-based auth, and image storage, deployed on auto-scaling AWS infrastructure.",
     tags: ["Java", "Spring", "React", "PostgreSQL", "Redis", "Docker", "AWS", "Nginx"],
@@ -216,23 +217,6 @@ export const projects: Project[] = [
     category: "Distributed Systems",
     link: "https://github.com/vineetkia/Distributed-Fire-Query-System",
     ascii: "mapreduce",
-  },
-  {
-    name: "Study Pilot Platform",
-    blurb: "An academic co-pilot unifying tasks, calendar, and AI study help.",
-    description:
-      "A student productivity hub bringing tasks, assignments, a color-coded calendar, and an Azure OpenAI study assistant into one responsive, accessible dashboard with full light/dark theming.",
-    tags: ["Next.js", "TypeScript", "Material UI", "Azure OpenAI", "Vercel"],
-    context: "CMPE 280 · Hackathon Project",
-    highlights: [
-      "Full CRUD task management with priorities, categories, search, and filters.",
-      "Custom monthly calendar with color-coded events and an assignment tracker.",
-      "WCAG AA accessibility with semantic HTML, ARIA labels, and keyboard navigation.",
-    ],
-    featured: true,
-    category: "Full-Stack",
-    link: "https://github.com/vineetkia/Study-Pilot-Platform",
-    ascii: "calendar",
   },
 ];
 
@@ -282,7 +266,11 @@ export type SkillGroup = { title: string; items: string[] };
 export const skills: SkillGroup[] = [
   {
     title: "Languages",
-    items: ["C++", "C#", "Java", "Python", "TypeScript", "JavaScript", "SQL", "Bash", "PowerShell"],
+    items: ["C++", "C#", "Java", "Python", "C", "TypeScript", "JavaScript", "SQL", "Bash", "PowerShell"],
+  },
+  {
+    title: "AI & Data",
+    items: ["LLMs", "RAG", "Agents", "Azure OpenAI", "Embeddings", "Vector Search", "Inference", "FAISS", "Pinecone"],
   },
   {
     title: "Frameworks & Libraries",
@@ -290,15 +278,11 @@ export const skills: SkillGroup[] = [
   },
   {
     title: "Messaging & Data",
-    items: ["Apache Kafka", "RabbitMQ", "ActiveMQ", "PostgreSQL", "MongoDB", "Redis", "Prisma"],
+    items: ["Apache Kafka", "RabbitMQ", "ActiveMQ", "PostgreSQL", "MongoDB", "Redis", "Cassandra", "Prisma"],
   },
   {
     title: "Cloud & Infrastructure",
-    items: ["AWS", "Azure", "Docker", "Linux", "Microservices", "Distributed Systems", "Nginx"],
-  },
-  {
-    title: "AI & Data",
-    items: ["Azure OpenAI", "RAG", "FAISS", "Pinecone", "gRPC", "OpenTelemetry"],
+    items: ["AWS", "Azure", "Docker", "Kubernetes", "Linux", "Microservices", "Distributed Systems", "gRPC", "Nginx"],
   },
   {
     title: "Practices",
@@ -321,7 +305,7 @@ export const education: Education[] = [
     field: "Computer Software Engineering",
     school: "San Jose State University",
     location: "San Jose, California",
-    period: "Aug 2025 — Present",
+    period: "Aug 2025 — May 2027",
   },
   {
     degree: "Bachelor of Technology",

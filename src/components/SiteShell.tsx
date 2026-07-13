@@ -7,6 +7,10 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import CustomCursor from "./CustomCursor";
 import FXOverlay from "./FXOverlay";
+import SmoothScroll from "./motion/SmoothScroll";
+import CommandPalette from "./CommandPalette";
+import ScrollProgress from "./motion/ScrollProgress";
+import NavTransition from "./motion/NavTransition";
 
 // Module-scoped flag: survives any remount of SiteShell within the page's
 // lifetime, so the intro loader can never replay mid-session even if React
@@ -51,10 +55,15 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       {showLoader && <TerminalLoader onComplete={handleComplete} />}
       <GlassFilter />
       <FXOverlay />
+      <ScrollProgress />
       <CustomCursor />
+      <CommandPalette />
+      <NavTransition />
       <Nav visible={loaded} />
-      <main className="flex-1">{children}</main>
-      <Footer />
+      <SmoothScroll>
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </SmoothScroll>
     </>
   );
 }

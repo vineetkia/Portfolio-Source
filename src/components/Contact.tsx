@@ -6,6 +6,7 @@ import { profile } from "@/data/portfolio";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { GitHubIcon, LinkedInIcon } from "./icons";
 import Reveal from "./Reveal";
+import Magnetic from "./motion/Magnetic";
 
 const SparklesCore = dynamic(
   () => import("@/components/ui/sparkles").then((m) => m.SparklesCore),
@@ -44,26 +45,31 @@ export default function Contact() {
       <div className="relative z-10 mx-auto w-full max-w-2xl px-6 text-center">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 06 — contact"}
+            {"// 07 — contact"}
           </div>
 
           <h2 className="font-heading mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            Let&apos;s Build Something
+            Let&apos;s build{" "}
+            <span className="font-serif font-normal italic text-emerald-300">
+              something
+            </span>
           </h2>
 
           <div className="mx-auto mt-5 h-px w-3/5 max-w-sm bg-gradient-to-r from-transparent via-emerald-500/70 to-transparent" />
 
           <p className="mx-auto mt-6 max-w-md text-white/65">
-            I&apos;m open to software engineering internships and new-grad roles,
-            and always up for a conversation about distributed systems, AI, or a
-            good side project.
+            I&apos;m graduating in May 2027 and open to new-grad software
+            engineering roles — especially in AI and distributed systems. Always
+            up for a good conversation or a side project.
           </p>
 
           <div className="mt-9 flex justify-center">
-            <LiquidButton href={`mailto:${profile.email}`} variant="accent" size="lg">
-              <Mail className="h-4 w-4" />
-              {profile.email}
-            </LiquidButton>
+            <Magnetic strength={0.5}>
+              <LiquidButton href={`mailto:${profile.email}`} variant="accent" size="lg">
+                <Mail className="h-4 w-4" />
+                {profile.email}
+              </LiquidButton>
+            </Magnetic>
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-4">

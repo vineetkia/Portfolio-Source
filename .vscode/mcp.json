@@ -1,0 +1,23 @@
+{
+  "inputs": [
+    {
+      "id": "twentyfirst-key",
+      "type": "promptString",
+      "description": "21st.dev API key (x-api-key)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    },
+    "21st": {
+      "type": "http",
+      "url": "https://21st.dev/api/mcp",
+      "headers": {
+        "x-api-key": "${input:twentyfirst-key}"
+      }
+    }
+  }
+}

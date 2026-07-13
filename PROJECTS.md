@@ -40,7 +40,8 @@ stores, Azure OpenAI embeddings + GPT, cross-encoder rerank. 24,063 passages, 23
 **Repo:** https://github.com/vineetkia/Symptom-Based-Disease-Identification-AI-Inference
 
 ### 4. AI Campus Marketplace · CMPE 202 (Group, Team Lead)
-A full-stack, microservice marketplace for SJSU students to buy/sell textbooks, electronics,
+### 4. AI Assisted Marketplace · CMPE 202 (Group, Team Lead)
+A full-stack, microservice marketplace for students to buy/sell textbooks, electronics,
 and essentials — with AI product search, real-time chat, role-based auth, and S3 image storage,
 deployed on auto-scaling AWS.
 **Stack:** Java/Spring, React, PostgreSQL, Redis, Docker, Nginx, AWS (EC2 auto-scaling, ALB, S3), JWT.
@@ -65,12 +66,6 @@ A three-part distributed-systems study on California wildfire air-quality data (
 **Stack:** C++, Python, gRPC, OpenMP, POSIX shared memory.
 **Repo:** https://github.com/vineetkia/Distributed-Fire-Query-System
 
-### 7. Study Pilot Platform — Academic Co-Pilot · CMPE 280 (Hackathon)
-A unified student productivity hub: dashboard, todo CRUD, color-coded calendar, assignment
-tracker, and an Azure OpenAI study assistant, with full dark mode and WCAG AA accessibility.
-**Stack:** Next.js 14, TypeScript, Material UI v6, react-hook-form + zod, Azure OpenAI, Vercel.
-**Repo:** https://github.com/vineetkia/Study-Pilot-Platform
-
 ---
 
 ## Startup — TrueStar (Co-Founder & Engineer)
@@ -94,8 +89,10 @@ Rerank 3.5, Tavily, LiveKit, Deepgram, Stripe Connect, Drizzle, Docker.
 
 ## Experience
 
-- **Software Engineer Intern — Microsoft** · Redmond, WA (On-site) · May 2026–Present
-  - Software engineering intern on the Microsoft Security IQ team (formerly Sentinel Platform).
+- **Software Engineer Intern — Microsoft** · Redmond, WA (On-site) · May 2026 – Aug 2026
+  - Team: Microsoft Security IQ (formerly Sentinel Platform) — the large-scale data-ingestion platform powering Microsoft Sentinel's data lake.
+  - Intelligent workload-placement engine (C#/.NET) routing ~82K shared-tenant pipelines onto right-sized Kubernetes compute; engineered to raise fleet CPU utilization ~5x (11% to 59%) and cut compute cost.
+  - Two-step, config-driven placement algorithm with a network-boundary (VNet) match guard behind feature flags for zero-downtime rollout; data-driven correction validated across 603K runs / 30 days in Kusto (ADX) on Azure Data Lake; hardened with 22 integration tests + a classifier suite.
 - **Software Development Engineer — ION Trading** · Pune, India · Jan 2022 – Aug 2025
   - C# desktop interface for market data (XML); setup 1 week → 10 min.
   - Apache Camel + Java trade framework; Kafka + ActiveMQ for ExxonMobil real-time trade data.
@@ -106,15 +103,15 @@ Rerank 3.5, Tavily, LiveKit, Deepgram, Stripe Connect, Drizzle, Docker.
   - Workshops for 150 students (Node.js, Docker, Nginx); Azure sessions for 200+ participants.
 
 ## Education
-- **M.S. Computer Software Engineering** — San Jose State University · Aug 2025–Present
+- **M.S. Computer Software Engineering** — San Jose State University · Aug 2025 – May 2027
 - **B.Tech Computer Science (Information Security)** — Vellore Institute of Technology · 2018–2022 · GPA 3.87
 
 ## Skills
 - **Languages:** C++, C#, Java, Python, TypeScript, JavaScript, SQL, Bash, PowerShell
 - **Frameworks:** React, Next.js, Node.js, Spring, Apache Camel, FastAPI, Tailwind
 - **Messaging/Data:** Kafka, RabbitMQ, ActiveMQ, PostgreSQL, MongoDB, Redis, Prisma
-- **Cloud/Infra:** AWS, Azure, Docker, Linux, Microservices, Distributed Systems, Nginx
-- **AI/Data:** Azure OpenAI, RAG, FAISS, Pinecone, gRPC, OpenTelemetry
+- **Cloud/Infra:** AWS, Azure, Docker, Kubernetes, Linux, Microservices, Distributed Systems, gRPC, Nginx
+- **AI/Data:** Azure OpenAI, LLMs, RAG, Inference, FAISS, Pinecone, gRPC, OpenTelemetry
 - **Practices:** OOP, SOLID, Agile, TDD, Design Patterns, TOGAF
 
 ## Accomplishments

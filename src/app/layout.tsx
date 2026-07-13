@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk, Fraunces } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/data/portfolio";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -20,17 +20,33 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
+// Editorial serif — used sparingly for high-contrast display accents against the
+// Grotesk/mono system (the "hybrid" hacker + editorial typography direction).
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+});
+
 const description =
-  "Vineet Kumar — software engineer with 3+ years in fintech, now pursuing an MS at San Jose State University and interning at Microsoft. Building distributed systems and AI-powered platforms.";
+  "Vineet Kumar — AI software engineer with 3+ years in fintech, now pursuing an MS at San Jose State University after a 2026 software engineering internship at Microsoft. Building AI-native platforms, LLM/RAG systems, and resilient distributed systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vinet.dev"),
-  title: "Vineet Kumar — Software Engineer",
+  title: "Vineet Kumar — AI Software Engineer",
   description,
   manifest: "/site.webmanifest",
   keywords: [
     "Vineet Kumar",
+    "AI Software Engineer",
     "Software Engineer",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "LLM",
+    "RAG",
+    "Generative AI",
+    "AI Agents",
     "Distributed Systems",
     "San Jose State University",
     "Microsoft",
@@ -39,7 +55,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name, url: "https://vinet.dev" }],
   openGraph: {
-    title: "Vineet Kumar — Software Engineer",
+    title: "Vineet Kumar — AI Software Engineer",
     description,
     url: "https://vinet.dev",
     siteName: "vinet.dev",
@@ -48,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vineet Kumar — Software Engineer",
+    title: "Vineet Kumar — AI Software Engineer",
     description,
     images: [profile.photo],
   },
@@ -67,7 +83,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${fraunces.variable} h-full antialiased`}
     >
       <head>
         <noscript>

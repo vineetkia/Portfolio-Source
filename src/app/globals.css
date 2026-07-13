@@ -1,19 +1,72 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand */
   --background: 0 0% 2%;
   --foreground: 0 0% 100%;
-  --accent: 156 100% 50%;
-  --accent-dim: 156 70% 45%;
+  --brand: 156 100% 50%;
+  --brand-dim: 156 70% 45%;
+
+  /* shadcn/ui token layer — mapped to the near-black + emerald identity */
+  --card: 0 0% 3.5%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 4%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 156 100% 50%;
+  --primary-foreground: 156 90% 6%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 62%;
+  --accent: 0 0% 14%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 16%;
+  --input: 0 0% 16%;
+  --ring: 156 100% 50%;
+  --radius: 0.75rem;
 }
 
 @theme inline {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
+  --color-brand: hsl(var(--brand));
+  --color-brand-dim: hsl(var(--brand-dim));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
   --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-space-grotesk);
+  --font-serif: var(--font-fraunces);
+}
+
+/* Tailwind v4: default un-colored `border` to the token, so shadcn primitives
+   (which use a bare `border`) match the theme. Explicit border-* classes win. */
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: hsl(var(--border));
+  }
 }
 
 html {
@@ -36,7 +89,7 @@ body {
 }
 
 ::selection {
-  background: hsl(var(--accent) / 0.35);
+  background: hsl(var(--brand) / 0.35);
   color: #fff;
 }
 
@@ -51,30 +104,42 @@ body {
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--accent) / 0.5);
+  background: hsl(var(--brand) / 0.5);
 }
 
 /* ---------- entrance + reveal ---------- */
+/* Shared easing: ease-out (decelerate on arrival) so motion feels anchored,
+   directional, and responsive rather than floaty. */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeInLong {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(32px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in      { animation: fadeIn 0.8s ease forwards; }
-.animate-fade-in-long { animation: fadeInLong 1.4s ease forwards; }
+.animate-fade-in      { animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-fade-in-long { animation: fadeInLong 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: perspective(1400px) rotateX(7deg) translateY(28px);
+  transform-origin: center bottom;
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: perspective(1400px) rotateX(0deg) translateY(0);
+}
+
+/* SplitText line masks: expand the clip box downward (compensated by negative
+   margin) so descenders (g, y, p) aren't clipped during the word reveal. */
+.split-line {
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 /* ---------- glitch ---------- */

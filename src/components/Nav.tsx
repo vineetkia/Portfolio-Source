@@ -11,12 +11,14 @@ const links = [
   { href: "#startup", label: "TrueStar" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
+  { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Nav({ visible = true }: { visible?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#top");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -25,12 +27,37 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Scroll-spy: highlight the nav link for whichever section owns the
+  // viewport's vertical centre band.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(`#${e.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    links.forEach((l) => {
+      const el = document.querySelector(l.href);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const navigate = (href: string, label: string) => {
+    setOpen(false);
+    window.dispatchEvent(
+      new CustomEvent("vinet:navigate", { detail: { href, label } })
+    );
+  };
 
   return (
     <>
@@ -44,6 +71,10 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
         <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <a
             href="#top"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("#top", "Home");
+            }}
             className="font-heading text-lg font-bold tracking-tight text-white"
           >
             {profile.initials}
@@ -55,7 +86,15 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-sm text-white/60 transition-colors hover:text-white"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(link.href, link.label);
+                  }}
+                  className={`text-sm transition-colors ${
+                    active === link.href
+                      ? "text-emerald-400"
+                      : "text-white/60 hover:text-white"
+                  }`}
                 >
                   {link.label}
                 </a>
@@ -63,14 +102,26 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
             ))}
           </ul>
 
-          <a
-            href={profile.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20 lg:inline-block"
-          >
-            Résumé
-          </a>
+          <div className="hidden items-center gap-2 md:flex">
+            <button
+              type="button"
+              onClick={() =>
+                window.dispatchEvent(new Event("vinet:open-command"))
+              }
+              aria-label="Open command palette"
+              className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs text-white/50 transition-colors hover:border-white/25 hover:text-white"
+            >
+              <span className="text-white/40">⌘</span>K
+            </button>
+            <a
+              href={profile.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20 lg:inline-block"
+            >
+              Résumé
+            </a>
+          </div>
 
           <button
             type="button"
@@ -104,7 +155,10 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
           <a
             key={link.href}
             href={link.href}
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(link.href, link.label);
+            }}
             style={{ transitionDelay: open ? `${i * 60 + 80}ms` : "0ms" }}
             className={`font-heading text-3xl font-semibold text-white/80 transition-all duration-300 hover:text-emerald-400 ${
               open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
