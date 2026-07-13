@@ -11,6 +11,7 @@ import SmoothScroll from "./motion/SmoothScroll";
 import CommandPalette from "./CommandPalette";
 import ScrollProgress from "./motion/ScrollProgress";
 import NavTransition from "./motion/NavTransition";
+import SceneBackground from "./motion/SceneBackground";
 
 // Module-scoped flag: survives any remount of SiteShell within the page's
 // lifetime, so the intro loader can never replay mid-session even if React
@@ -53,6 +54,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   return (
     <>
       {showLoader && <TerminalLoader onComplete={handleComplete} />}
+      <SceneBackground />
       <GlassFilter />
       <FXOverlay />
       <ScrollProgress />

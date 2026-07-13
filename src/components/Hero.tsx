@@ -9,8 +9,8 @@ import GlitchText from "@/components/GlitchText";
 import Magnetic from "@/components/motion/Magnetic";
 import { gsap, useGSAP, registerGsap, prefersReducedMotion } from "@/lib/gsap";
 
-const ParticleField = dynamic(
-  () => import("@/components/ui/particle-field").then((m) => m.ParticleField),
+const FluidHero = dynamic(
+  () => import("@/components/ui/fluid-hero").then((m) => m.FluidHero),
   { ssr: false }
 );
 
@@ -58,7 +58,7 @@ export default function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
     >
       <div data-speed="0.8" className="pointer-events-none absolute inset-[-12%]">
-        <ParticleField className="absolute inset-0 h-full w-full" />
+        <FluidHero className="absolute inset-0 h-full w-full" />
       </div>
       <div
         aria-hidden

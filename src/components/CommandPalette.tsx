@@ -11,6 +11,9 @@ import {
   FileText,
   ArrowUp,
   Copy,
+  Terminal,
+  Zap,
+  Coffee,
 } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { GitHubIcon, LinkedInIcon } from "./icons";
@@ -37,6 +40,15 @@ function navigate(href: string, label: string) {
   window.dispatchEvent(
     new CustomEvent("vinet:navigate", { detail: { href, label } })
   );
+}
+
+// Easter-egg: briefly glitch the whole screen (RGB split + shake).
+function screenGlitch() {
+  const b = document.body;
+  b.classList.remove("screen-glitch");
+  void b.offsetWidth; // restart the animation
+  b.classList.add("screen-glitch");
+  window.setTimeout(() => b.classList.remove("screen-glitch"), 900);
 }
 
 // ⌘K / Ctrl-K command palette — jump to any section or run a quick action.
@@ -146,6 +158,52 @@ export default function CommandPalette() {
           >
             <LinkedInIcon />
             <span>LinkedIn</span>
+          </CommandItem>
+        </CommandGroup>
+
+        {/* Hidden easter-eggs — only surface when you type the magic words. */}
+        <CommandGroup heading="> secret">
+          <CommandItem
+            value="sudo hire vineet make offer"
+            onSelect={() =>
+              run(() => {
+                window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
+                  "Permission granted, let's talk"
+                )}&body=${encodeURIComponent(
+                  "Hi Vineet, I found the secret command. Let's chat."
+                )}`;
+              })
+            }
+          >
+            <Zap />
+            <span>sudo hire-vineet</span>
+          </CommandItem>
+          <CommandItem
+            value="whoami identity bio"
+            onSelect={() =>
+              run(() =>
+                navigator.clipboard?.writeText(
+                  "Vineet Kumar: AI software engineer. Founder @ TrueStar. Ex-Microsoft, ex-ION Trading."
+                )
+              )
+            }
+          >
+            <Terminal />
+            <span>whoami</span>
+          </CommandItem>
+          <CommandItem
+            value="glitch matrix hack the planet"
+            onSelect={() => run(screenGlitch)}
+          >
+            <Zap />
+            <span>./glitch --run</span>
+          </CommandItem>
+          <CommandItem
+            value="coffee brew make caffeine 418"
+            onSelect={() => run(screenGlitch)}
+          >
+            <Coffee />
+            <span>brew coffee</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>

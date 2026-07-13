@@ -98,6 +98,14 @@ export type AsciiScene =
   | "calendar"
   | "chart";
 
+export type AccentName =
+  | "emerald"
+  | "cyan"
+  | "sky"
+  | "indigo"
+  | "violet"
+  | "amber";
+
 export type Project = {
   name: string;
   blurb: string;
@@ -107,6 +115,7 @@ export type Project = {
   highlights: string[];
   featured: boolean;
   category: "AI / ML" | "Distributed Systems" | "Full-Stack" | "Systems" | "Fintech";
+  accent: AccentName;
   link?: string;
   ascii: AsciiScene;
 };
@@ -130,6 +139,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "AI / ML",
+    accent: "emerald",
     link: "https://github.com/vineetkia/Hyrd-AI-Career-Platform",
     ascii: "waveform",
   },
@@ -147,6 +157,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Distributed Systems",
+    accent: "sky",
     link: "https://github.com/vineetkia/Self-Healing-AI-Microservice-Mesh",
     ascii: "servers",
   },
@@ -164,6 +175,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "AI / ML",
+    accent: "cyan",
     link: "https://github.com/vineetkia/Symptom-Based-Disease-Identification-AI-Inference",
     ascii: "vectorsearch",
   },
@@ -181,6 +193,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Full-Stack",
+    accent: "violet",
     link: "https://github.com/vineetkia/AI-Campus-Marketplace",
     ascii: "stack",
   },
@@ -198,6 +211,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Fintech",
+    accent: "amber",
     link: "https://github.com/vineetkia/TradeHub",
     ascii: "chart",
   },
@@ -215,6 +229,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     category: "Distributed Systems",
+    accent: "indigo",
     link: "https://github.com/vineetkia/Distributed-Fire-Query-System",
     ascii: "mapreduce",
   },

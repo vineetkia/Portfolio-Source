@@ -206,6 +206,23 @@ body {
 }
 .cursor-blink { animation: blink 1s steps(1) infinite; }
 
+/* Easter-egg: brief RGB-split + shake of the whole screen. */
+@keyframes screen-glitch {
+  0% { transform: translate(0, 0); filter: none; }
+  15% { transform: translate(-3px, 2px); filter: hue-rotate(15deg) saturate(1.4); }
+  30% { transform: translate(4px, -2px); filter: hue-rotate(-15deg); }
+  45% { transform: translate(-3px, -1px); filter: contrast(1.3); }
+  60% { transform: translate(3px, 2px); filter: hue-rotate(10deg); }
+  75% { transform: translate(-2px, 1px); filter: none; }
+  100% { transform: translate(0, 0); filter: none; }
+}
+body.screen-glitch {
+  animation: screen-glitch 0.85s steps(2) 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.screen-glitch { animation: none; }
+}
+
 @keyframes flicker {
   0%, 100% { opacity: 1; }
   92% { opacity: 1; }
