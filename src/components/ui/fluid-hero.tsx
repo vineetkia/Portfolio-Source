@@ -41,10 +41,12 @@ void main(){
                 fbm(p + 1.7*q + vec2(2.1, 9.2) - 0.12*t));
   float f = fbm(p + 2.4*r);
 
-  // Cursor influence: a soft glow that warms and brightens the flow.
+  // Anchored glow that warms and brightens the flow. Its position is fixed
+  // (the "hook"), but it gently breathes so the flames feel alive.
   vec2 ptr = uPointer; ptr.x *= agsp;
   float d = distance(p, ptr);
-  float glow = exp(-d*d*3.5);
+  float glow = exp(-d*d*3.0);
+  glow *= 0.86 + 0.14 * sin(uTime * 0.5);
   f += glow * 0.35;
 
   // Emerald palette from deep black to bright teal.
@@ -71,10 +73,11 @@ varying vec2 vUv;
 void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
 `;
 
-// Frozen flow: a fixed time seed + glow position, hand-tuned (via Playwright) so
-// the emerald cloud sits low and the headline area stays dark.
-const FROZEN_SEED = 30.0;
-const FROZEN_POINTER = new THREE.Vector2(0.5, 0.12);
+// The glow hotspot ("hook") is anchored at this hand-picked low position so the
+// composition stays put — but the flames keep flowing. START_PHASE sets the
+// initial frame so the first paint matches the loved look.
+const ANCHOR_GLOW = new THREE.Vector2(0.5, 0.12);
+const START_PHASE = 30.0;
 
 export function FluidHero({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -121,18 +124,52 @@ export function FluidHero({ className }: { className?: string }) {
     resize();
     const resizeObserver = new ResizeObserver(() => {
       resize();
-      renderer.render(scene, camera);
+      if (!running) renderer.render(scene, camera);
     });
     resizeObserver.observe(container);
 
-    // Frozen composition — the flow is paused at a fixed, hand-picked frame so
-    // the emerald cloud sits low and the name area stays dark. No rAF loop, no
-    // pointer follow: this is a single static render (also ideal for perf).
-    uniforms.uTime.value = FROZEN_SEED;
-    uniforms.uPointer.value.copy(FROZEN_POINTER);
-    renderer.render(scene, camera);
+    // The glow is pinned at the anchor; only uTime advances, so the flames flow
+    // while the composition stays put. No cursor follow.
+    uniforms.uPointer.value.copy(ANCHOR_GLOW);
+    uniforms.uTime.value = START_PHASE;
+
+    let raf: number | null = null;
+    let running = false;
+    const clock = new THREE.Clock();
+
+    const render = () => renderer.render(scene, camera);
+    const loop = () => {
+      raf = requestAnimationFrame(loop);
+      uniforms.uTime.value += clock.getDelta();
+      render();
+    };
+    const start = () => {
+      if (running || prefersReduced) return;
+      running = true;
+      clock.start();
+      loop();
+    };
+    const stop = () => {
+      running = false;
+      if (raf !== null) {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    };
+
+    // Only run the flow while the hero is on-screen (perf).
+    const visibility = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { threshold: 0 }
+    );
+    visibility.observe(container);
+
+    if (prefersReduced) render();
+    else start();
 
     return () => {
+      stop();
+      visibility.disconnect();
       resizeObserver.disconnect();
       quad.geometry.dispose();
       material.dispose();
