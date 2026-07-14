@@ -71,6 +71,11 @@ varying vec2 vUv;
 void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
 `;
 
+// Frozen flow: a fixed time seed + glow position, hand-tuned (via Playwright) so
+// the emerald cloud sits low and the headline area stays dark.
+const FROZEN_SEED = 30.0;
+const FROZEN_POINTER = new THREE.Vector2(0.5, 0.12);
+
 export function FluidHero({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -114,60 +119,21 @@ export function FluidHero({ className }: { className?: string }) {
       );
     };
     resize();
-    const resizeObserver = new ResizeObserver(resize);
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+      renderer.render(scene, camera);
+    });
     resizeObserver.observe(container);
 
-    const targetPtr = new THREE.Vector2(0.5, 0.55);
-    const onPointerMove = (e: PointerEvent) => {
-      const rect = container.getBoundingClientRect();
-      targetPtr.set(
-        (e.clientX - rect.left) / rect.width,
-        1 - (e.clientY - rect.top) / rect.height
-      );
-    };
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-
-    let raf: number | null = null;
-    let running = false;
-    const clock = new THREE.Clock();
-
-    const render = () => {
-      uniforms.uPointer.value.lerp(targetPtr, 0.06);
-      renderer.render(scene, camera);
-    };
-    const loop = () => {
-      raf = requestAnimationFrame(loop);
-      uniforms.uTime.value += clock.getDelta();
-      render();
-    };
-    const start = () => {
-      if (running || prefersReduced) return;
-      running = true;
-      clock.start();
-      loop();
-    };
-    const stop = () => {
-      running = false;
-      if (raf !== null) {
-        cancelAnimationFrame(raf);
-        raf = null;
-      }
-    };
-
-    const visibility = new IntersectionObserver(
-      ([entry]) => (entry.isIntersecting ? start() : stop()),
-      { threshold: 0 }
-    );
-    visibility.observe(container);
-
-    if (prefersReduced) render();
-    else start();
+    // Frozen composition — the flow is paused at a fixed, hand-picked frame so
+    // the emerald cloud sits low and the name area stays dark. No rAF loop, no
+    // pointer follow: this is a single static render (also ideal for perf).
+    uniforms.uTime.value = FROZEN_SEED;
+    uniforms.uPointer.value.copy(FROZEN_POINTER);
+    renderer.render(scene, camera);
 
     return () => {
-      stop();
-      visibility.disconnect();
       resizeObserver.disconnect();
-      window.removeEventListener("pointermove", onPointerMove);
       quad.geometry.dispose();
       material.dispose();
       renderer.dispose();

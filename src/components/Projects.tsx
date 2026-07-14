@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { projects, profile, type Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -118,24 +118,25 @@ export default function Projects() {
   );
 
   const gridRef = useRef<HTMLDivElement>(null);
-  const veilRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<Filter>("All");
   const [selected, setSelected] = useState<Project | null>(null);
 
-  // Liquid reveal: an accent-tinted veil wipes up off the dialog on open.
-  useGSAP(
-    () => {
-      if (!selected || prefersReducedMotion()) return;
-      const veil = veilRef.current;
-      if (!veil) return;
-      gsap.fromTo(
-        veil,
-        { yPercent: 0 },
-        { yPercent: -100, duration: 0.7, ease: "power4.inOut" }
-      );
-    },
-    { dependencies: [selected?.name] }
-  );
+  // Liquid reveal: an accent-tinted veil wipes up off the dialog on open. A
+  // callback ref runs the moment the veil mounts inside the Radix portal, which
+  // avoids the timing race of animating before the portal exists.
+  const animateVeil = useCallback((node: HTMLDivElement | null) => {
+    if (!node) return;
+    registerGsap();
+    if (prefersReducedMotion()) {
+      gsap.set(node, { yPercent: -100 });
+      return;
+    }
+    gsap.fromTo(
+      node,
+      { yPercent: 0 },
+      { yPercent: -100, duration: 0.7, ease: "power4.inOut" }
+    );
+  }, []);
 
   const onFilter = (next: Filter) => {
     if (next === filter) return;
@@ -254,7 +255,7 @@ export default function Projects() {
             <>
               {/* liquid reveal veil — wipes up off the content on open */}
               <div
-                ref={veilRef}
+                ref={animateVeil}
                 aria-hidden
                 className="pointer-events-none absolute inset-0 z-20 rounded-b-[40%]"
                 style={{
