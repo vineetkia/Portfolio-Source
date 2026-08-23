@@ -87,13 +87,6 @@ export type Involvement = {
 
 export const involvement: Involvement[] = [
   {
-    period: "Jan 2022 — Aug 2025",
-    role: "Mentor, new engineers",
-    org: "ION Group",
-    detail:
-      "Onboarded new hires on OOP, SOLID principles, and debugging, and ran the sessions that held the team at a 95% CI pass rate.",
-  },
-  {
     period: "Jan 2020 — Aug 2021",
     role: "Microsoft Learn Student Ambassador",
     org: "Microsoft · Beta rank",

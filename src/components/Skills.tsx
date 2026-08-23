@@ -64,7 +64,7 @@ export default function Skills() {
                   >
                     <th
                       scope="row"
-                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-white/85 sm:w-1/3 sm:px-5"
+                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-emerald-400 sm:w-1/3 sm:px-5"
                     >
                       {c.area}
                     </th>
@@ -94,7 +94,7 @@ export default function Skills() {
                   >
                     <th
                       scope="row"
-                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-white/85 sm:w-1/3 sm:px-5"
+                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-emerald-400 sm:w-1/3 sm:px-5"
                     >
                       {group.title}
                     </th>
