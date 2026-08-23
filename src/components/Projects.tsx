@@ -182,7 +182,7 @@ export default function Projects() {
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 03 — projects"}
+            {"// 03 / projects"}
           </div>
           <SplitHeading
             as="h2"

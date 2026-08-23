@@ -38,7 +38,7 @@ export default function Skills() {
     <section id="skills" className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
       <Reveal>
         <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-          {"// 05 — skills"}
+          {"// 05 / skills"}
         </div>
         <SplitHeading
           as="h2"

@@ -11,7 +11,7 @@ export default function Experience() {
     >
       <Reveal>
         <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-          {"// 04 — experience"}
+          {"// 04 / experience"}
         </div>
         <SplitHeading
           as="h2"

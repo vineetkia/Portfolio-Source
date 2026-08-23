@@ -24,7 +24,7 @@ export default function Credentials() {
     >
       <Reveal>
         <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-          {"// 06 — education"}
+          {"// 06 / education"}
         </div>
         <SplitHeading
           as="h2"

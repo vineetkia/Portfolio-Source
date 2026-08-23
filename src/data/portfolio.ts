@@ -47,13 +47,13 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     company: "Microsoft",
     location: "Redmond, Washington · On-site",
-    period: "May 2026 — Aug 2026",
+    period: "May 2026 to Aug 2026",
     summary:
       "Software engineering intern on the Microsoft Security IQ team (formerly the Sentinel Platform), building the large-scale data-ingestion platform that powers Microsoft Sentinel's data lake.",
     highlights: [
-      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 7 million shared-tenant pipeline jobs onto right-sized Kubernetes compute — engineered to raise fleet CPU utilization about 5x (11% to 59%) and cut compute cost.",
+      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 7 million shared-tenant pipeline jobs onto right-sized Kubernetes compute, engineered to raise fleet CPU utilization about 5x (11% to 59%) and cut compute cost.",
       "Architected a two-step, config-driven placement algorithm with a network-boundary (VNet) match guard that structurally prevents mis-routing across isolated networks, shipped behind feature flags for zero-downtime, reversible rollout.",
-      "Led a data-driven design correction — analyzing 603K production runs over 30 days in Kusto (ADX) on Azure Data Lake — then hardened it with 22 integration tests and a classifier suite.",
+      "Led a data-driven design correction by analyzing 603K production runs over 30 days in Kusto (ADX) on Azure Data Lake, then hardened it with 22 integration tests and a classifier suite.",
     ],
     tags: ["C#", ".NET", "Kubernetes", "Kusto (ADX)", "Azure Data Lake", "Distributed Systems", "Feature Flags"],
   },
@@ -61,13 +61,13 @@ export const experience: Experience[] = [
     role: "Software Development Engineer",
     company: "ION Trading",
     location: "Pune, India",
-    period: "Jan 2022 — Aug 2025",
+    period: "Jan 2022 to Aug 2025",
     summary:
       "Built and maintained trade-processing systems for major financial institutions across C#, Java, and C++.",
     highlights: [
-      "Built a C# desktop interface to streamline import/export of market index, correlation, and volatility data in XML — cutting setup time from 1 week to 10 minutes between UAT and Production.",
+      "Built a C# desktop interface to streamline import/export of market index, correlation, and volatility data in XML, cutting setup time from 1 week to 10 minutes between UAT and Production.",
       "Engineered a trade-processing framework with Apache Camel and Java, integrating Kafka and ActiveMQ for ExxonMobil to enable real-time trade data exchange and reduce latency.",
-      "Enhanced a commodity trading module using Java Native Interface and C++ to automate bulk trade scheduling — cutting UAT time from 4 weeks to 30 minutes.",
+      "Enhanced a commodity trading module using Java Native Interface and C++ to automate bulk trade scheduling, cutting UAT time from 4 weeks to 30 minutes.",
       "Automated .NET Framework upgrades with PowerShell across 120+ modules, slashing upgrade time from 2 months to 1 week.",
       "Achieved a consistent 95% CI pass rate through rigorous code reviews, SonarQube, and SOLID-principles sessions for the team and new hires.",
       "Authored technical documentation that reduced new-hire onboarding time by 60%.",
@@ -87,14 +87,14 @@ export type Involvement = {
 
 export const involvement: Involvement[] = [
   {
-    period: "Jan 2020 — Aug 2021",
+    period: "Jan 2020 to Aug 2021",
     role: "Microsoft Learn Student Ambassador",
     org: "Microsoft · Beta rank",
     detail:
       "Ran hands-on workshops for 150 students, every attendee shipping a full-stack deployment on Node.js, Docker, and Nginx, plus Azure sessions for 200+ participants.",
   },
   {
-    period: "2019 — 2022",
+    period: "2019 to 2022",
     role: "Author, Code To Express",
     org: "Vellore Institute of Technology",
     detail:
@@ -134,11 +134,11 @@ export type Project = {
 };
 
 // Projects are ordered by most in-demand skills:
-// AI/ML → Distributed Systems → Full-Stack → Fintech → Systems.
+// AI/ML, then distributed systems, full-stack, fintech, systems.
 
 export const projects: Project[] = [
   {
-    name: "Hyrd — Voice-AI Career Platform",
+    name: "Hyrd: Voice-AI Career Platform",
     blurb:
       "An agentic AI career platform: résumé optimization, a real-time voice interview agent, and post-interview performance analytics.",
     description:
@@ -147,7 +147,7 @@ export const projects: Project[] = [
     context: "CMPE 280 · Final Project · Team of 5",
     highlights: [
       "LLM résumé optimizer with diff annotations, per-change approval, and live ATS scoring.",
-      "Real-time AI voice mock interview (sub-second STT → LLM → TTS) with audio analysis.",
+      "Real-time AI voice mock interview (sub-second speech to text, LLM, then speech back) with audio analysis.",
       "Performance dashboard scoring clarity, confidence, relevance, structure, depth, and pace.",
     ],
     featured: true,
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     name: "Self-Healing AI Ops Mesh",
     blurb: "An LLM-driven self-healing service mesh with autonomous, AI root-cause remediation.",
     description:
-      "A gRPC service mesh that observes itself, identifies the deepest failing dependency in its call graph, and applies bounded remediation autonomously — an LLM drives reasoning while a deterministic rule engine guarantees safety. Detects failures in under 5 seconds and recovers in under 10.",
+      "A gRPC service mesh that observes itself, identifies the deepest failing dependency in its call graph, and applies bounded remediation autonomously. An LLM drives the reasoning while a deterministic rule engine guarantees safety. Detects failures in under 5 seconds and recovers in under 10.",
     tags: ["LLM Agents", "AI Root-Cause", "Inference", "gRPC", "FastAPI", "OpenTelemetry", "Docker"],
     context: "CMPE 273 · Enterprise Distributed Systems · Final Project",
     highlights: [
@@ -178,7 +178,7 @@ export const projects: Project[] = [
     name: "Clinical RAG Diagnostic Engine",
     blurb: "A retrieval-augmented (RAG) clinical engine that ranks diagnoses with auditable, cited evidence.",
     description:
-      "A clinical decision-support pipeline that ranks likely diseases from a patient's symptom set and shows the evidence behind each ranking — the FP-Growth association rule that fired plus biomedical passages retrieved from MedQuAD via dense vector search. Built so every prediction is explainable, not a black box.",
+      "A clinical decision-support pipeline that ranks likely diseases from a patient's symptom set and shows the evidence behind each ranking: the FP-Growth association rule that fired, plus biomedical passages retrieved from MedQuAD via dense vector search. Built so every prediction is explainable, not a black box.",
     tags: ["RAG", "Vector Search", "Embeddings", "Cross-Encoder Rerank", "FAISS", "Pinecone", "Azure OpenAI"],
     context: "CMPE 255 · Data Mining · Final Project",
     highlights: [
@@ -196,7 +196,7 @@ export const projects: Project[] = [
     name: "AI Assisted Marketplace",
     blurb: "A full-stack, AI-assisted marketplace for buying and selling student essentials.",
     description:
-      "A modular, microservice-based marketplace where students buy and sell textbooks, electronics, and gadgets — featuring AI-powered product search, real-time chat, role-based auth, and image storage, deployed on auto-scaling AWS infrastructure.",
+      "A modular, microservice-based marketplace where students buy and sell textbooks, electronics, and gadgets, with AI-powered product search, real-time chat, role-based auth, and image storage, deployed on auto-scaling AWS infrastructure.",
     tags: ["Java", "Spring", "React", "PostgreSQL", "Redis", "Docker", "AWS", "Nginx"],
     context: "CMPE 202 · Group Project · Team Lead",
     highlights: [
@@ -214,11 +214,11 @@ export const projects: Project[] = [
     name: "TradeHub",
     blurb: "A real-time, scalable stock and crypto trading platform.",
     description:
-      "A professional-grade web trading application providing live stock and cryptocurrency market data, portfolio management, P&L analytics, and secure authentication — powered by Python microservices for price streaming, news, and reporting.",
+      "A professional-grade web trading application providing live stock and cryptocurrency market data, portfolio management, P&L analytics, and secure authentication, powered by Python microservices for price streaming, news, and reporting.",
     tags: ["React", "Vite", "Express", "PostgreSQL", "Drizzle", "WebSocket", "FastAPI", "JWT/2FA"],
     context: "CMPE 272 · Enterprise Software Platforms",
     highlights: [
-      "Real-time price streaming over WebSocket with 1–10s update intervals.",
+      "Real-time price streaming over WebSocket with 1 to 10s update intervals.",
       "JWT auth with optional TOTP-based two-factor authentication.",
       "Python/FastAPI microservices for price stream, news feed, and P&L reporting.",
     ],
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     description:
       "A three-part distributed-systems project processing California wildfire air-quality data: from parallel-processing performance analysis to a multi-process gRPC query engine with leader election and fault tolerance.",
     tags: ["C++", "Python", "gRPC", "OpenMP", "POSIX Shared Memory", "Bully Algorithm"],
-    context: "CMPE 275 · Enterprise Application Development · Mini 1–3",
+    context: "CMPE 275 · Enterprise Application Development · Mini 1 to 3",
     highlights: [
       "Parallel query engine achieving 2.77× speedup with OpenMP over single-threaded.",
       "6-process, 3-tier hierarchical query system with gRPC streaming and C++/Python interop.",
@@ -253,19 +253,19 @@ export const startup = {
   role: "Co-Founder & Engineer",
   tagline: "An AI-native expert research platform.",
   description:
-    "TrueStar runs two research tracks in parallel and merges them into one cited report. Primary research is live, AI-moderated expert interviews — a voice agent named Aria interviews vetted human experts over LiveKit, paying them per interview via Stripe Connect. Secondary research is TARS: four specialized AI agents that independently research the open web, debate their findings, cross-check claims, and produce a synthesis with a hallucination audit and grounding score.",
+    "TrueStar runs two research tracks in parallel and merges them into one cited report. Primary research is live, AI-moderated expert interviews: a voice agent named Aria interviews vetted human experts over LiveKit, paying them per interview via Stripe Connect. Secondary research is TARS: four specialized AI agents that independently research the open web, debate their findings, cross-check claims, and produce a synthesis with a hallucination audit and grounding score.",
   highlights: [
     {
-      title: "Aria — real-time voice interviewer",
-      body: "Sub-second voice agent over LiveKit WebRTC (Deepgram STT · Azure OpenAI · Fish Audio TTS) conducting ~10-minute expert interviews.",
+      title: "Aria, the real-time voice interviewer",
+      body: "Sub-second voice agent over LiveKit WebRTC (Deepgram STT · Azure OpenAI · Fish Audio TTS) conducting 10-minute expert interviews.",
     },
     {
-      title: "TARS — multi-agent fact verification",
+      title: "TARS, multi-agent fact verification",
       body: "Four adversarial agents (Data Scientist, Investigative Journalist, Domain Expert, Devil's Advocate) debate, reflect, and synthesize an auditable verdict with cited sources.",
     },
     {
       title: "RAG document intelligence",
-      body: "Namespace-scoped retrieval over expert documents — text-embedding-3-large into Pinecone with Cohere Rerank 3.5.",
+      body: "Namespace-scoped retrieval over expert documents, embedded into Pinecone with Cohere Rerank 3.5.",
     },
     {
       title: "Production microservices",
@@ -333,21 +333,21 @@ export const education: Education[] = [
     field: "Computer Software Engineering",
     school: "San Jose State University",
     location: "San Jose, California",
-    period: "Aug 2025 — May 2027",
+    period: "Aug 2025 to May 2027",
   },
   {
     degree: "Bachelor of Technology",
-    field: "Computer Science & Engineering — Information Security",
+    field: "Computer Science & Engineering (Information Security)",
     school: "Vellore Institute of Technology",
     location: "Vellore, India",
-    period: "Jul 2018 — Jun 2022",
+    period: "Jul 2018 to Jun 2022",
     detail: "GPA 3.87",
   },
 ];
 
 export const accomplishments: string[] = [
   "Awarded Beta-rank Microsoft Learn Student Ambassador by Microsoft.",
-  "2nd Place — Code Run Seek, IEEE IAS & IEEE WIE International Techno Carnival, VIT.",
+  "2nd Place, Code Run Seek, IEEE IAS and IEEE WIE International Techno Carnival, VIT.",
 ];
 
 export const certifications: string[] = [

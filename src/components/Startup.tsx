@@ -34,7 +34,7 @@ export default function Startup() {
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 02 — truestar"}
+            {"// 02 / truestar"}
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-3">
             <GlitchText

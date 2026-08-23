@@ -117,7 +117,7 @@ export default function About() {
       <div className="grid items-center gap-12 md:grid-cols-2">
         <Reveal className="order-2 md:order-1">
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 01 — about"}
+            {"// 01 / about"}
           </div>
           <SplitHeading
             as="h2"

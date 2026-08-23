@@ -54,7 +54,7 @@ export default function Contact() {
       <div className="relative z-10 mx-auto w-full max-w-2xl px-6 text-center">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 07 — contact"}
+            {"// 07 / contact"}
           </div>
 
           <h2 className="font-heading mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
@@ -68,7 +68,7 @@ export default function Contact() {
 
           <p className="mx-auto mt-6 max-w-md text-white/65">
             I&apos;m graduating in May 2027 and open to new-grad software
-            engineering roles — especially in AI and distributed systems. Always
+            engineering roles, especially in AI and distributed systems. Always
             up for a good conversation or a side project.
           </p>
 

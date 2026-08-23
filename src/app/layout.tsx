@@ -33,11 +33,11 @@ const fraunces = Fraunces({
 });
 
 const description =
-  "Vineet Kumar — AI software engineer with 4+ years in fintech, now pursuing an MS at San Jose State University after a 2026 software engineering internship at Microsoft. Building AI-native platforms, LLM/RAG systems, and resilient distributed systems.";
+  "Vineet Kumar is an AI software engineer with 4+ years in fintech, now pursuing an MS at San Jose State University after a 2026 software engineering internship at Microsoft. Building AI-native platforms, LLM/RAG systems, and resilient distributed systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vinet.dev"),
-  title: "Vineet Kumar — AI Software Engineer",
+  title: "Vineet Kumar | AI Software Engineer",
   description,
   manifest: "/site.webmanifest",
   keywords: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name, url: "https://vinet.dev" }],
   openGraph: {
-    title: "Vineet Kumar — AI Software Engineer",
+    title: "Vineet Kumar | AI Software Engineer",
     description,
     url: "https://vinet.dev",
     siteName: "vinet.dev",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vineet Kumar — AI Software Engineer",
+    title: "Vineet Kumar | AI Software Engineer",
     description,
     images: [profile.photo],
   },
