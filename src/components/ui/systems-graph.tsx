@@ -131,6 +131,9 @@ export function SystemsGraphScene({ className }: { className?: string }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
+    // True while the drawing buffer is released (canvas shrunk to 1x1 off-screen).
+    let shrunk = false;
+
     const resize = () => {
       const { width, height } = container.getBoundingClientRect();
       if (width === 0 || height === 0) return;
@@ -139,7 +142,11 @@ export function SystemsGraphScene({ className }: { className?: string }) {
       camera.updateProjectionMatrix();
     };
     resize();
-    const resizeObserver = new ResizeObserver(resize);
+    const resizeObserver = new ResizeObserver(() => {
+      // The 1x1 size while released is intentional; restoring re-reads it.
+      if (shrunk) return;
+      resize();
+    });
     resizeObserver.observe(container);
 
     const tmp = new THREE.Vector3();
@@ -189,13 +196,32 @@ export function SystemsGraphScene({ className }: { className?: string }) {
       }
     };
 
+    // Off-screen, shrink the drawing buffer to free its GPU memory. The WebGL
+    // context, compiled shaders and scene graph all stay alive, so coming back
+    // is just a resize plus one synchronous frame: no recompile, no flash.
+    const releaseBuffer = () => {
+      if (shrunk) return;
+      shrunk = true;
+      renderer.setSize(1, 1, false);
+    };
+    const restoreBuffer = () => {
+      if (!shrunk) return;
+      shrunk = false;
+      resize();
+      render();
+    };
+
     let onScreen = false;
 
     const visibility = new IntersectionObserver(
       ([entry]) => {
         onScreen = entry.isIntersecting;
+        if (onScreen) restoreBuffer();
         if (onScreen && !document.hidden) start();
-        else stop();
+        else {
+          stop();
+          if (!onScreen) releaseBuffer();
+        }
       },
       { threshold: 0 }
     );

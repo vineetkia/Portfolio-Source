@@ -23,6 +23,9 @@ export function AgentConstellation({ className }: { className?: string }) {
 
     let width = 0;
     let height = 0;
+    // True while the backing store is released (1x1 off-screen). CSS size is
+    // set separately, so layout never shifts.
+    let shrunk = false;
 
     const resize = () => {
       const r = parent.getBoundingClientRect();
@@ -35,7 +38,10 @@ export function AgentConstellation({ className }: { className?: string }) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
-    const ro = new ResizeObserver(resize);
+    const ro = new ResizeObserver(() => {
+      if (shrunk) return;
+      resize();
+    });
     ro.observe(parent);
 
     const AGENTS = 4;
@@ -170,13 +176,32 @@ export function AgentConstellation({ className }: { className?: string }) {
       }
     };
 
+    // Off-screen, drop the backing store to free its memory. Restoring is a
+    // resize plus one synchronous repaint, so there is no visible flash.
+    const releaseBuffer = () => {
+      if (shrunk) return;
+      shrunk = true;
+      canvas.width = 1;
+      canvas.height = 1;
+    };
+    const restoreBuffer = () => {
+      if (!shrunk) return;
+      shrunk = false;
+      resize();
+      draw();
+    };
+
     let onScreen = false;
 
     const io = new IntersectionObserver(
       ([e]) => {
         onScreen = e.isIntersecting;
+        if (onScreen) restoreBuffer();
         if (onScreen && !document.hidden) start();
-        else stop();
+        else {
+          stop();
+          if (!onScreen) releaseBuffer();
+        }
       },
       { threshold: 0 }
     );
