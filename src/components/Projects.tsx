@@ -182,14 +182,14 @@ export default function Projects() {
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 04 — projects"}
+            {"// 03 — projects"}
           </div>
           <SplitHeading
             as="h2"
             text="Selected work"
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
-          <p className="mt-3 max-w-2xl text-white/60">
+          <p className="prose-justify mt-3 max-w-2xl text-white/60">
             Ordered by today&apos;s most in-demand skills — AI/ML and distributed
             systems first. Filter by focus, then open any card for the full
             breakdown.
@@ -203,7 +203,7 @@ export default function Projects() {
               type="button"
               onClick={() => onFilter(f)}
               className={cn(
-                "cursor-pointer rounded-full border px-4 py-1.5 font-mono text-xs transition-colors",
+                "cursor-pointer rounded-full border px-4 py-2.5 font-mono text-xs transition-colors [@media(pointer:fine)]:py-1.5",
                 filter === f
                   ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-300"
                   : "border-white/10 bg-white/5 text-white/50 hover:border-white/25 hover:text-white"
@@ -274,7 +274,7 @@ export default function Projects() {
                 </DialogDescription>
               </DialogHeader>
 
-              <p className="text-sm leading-6 text-white/70">
+              <p className="prose-justify text-sm leading-6 text-white/70">
                 {selected.description}
               </p>
 

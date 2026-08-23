@@ -19,8 +19,8 @@ export default function FXOverlay() {
       {!reduced && (
         <div className="absolute inset-0 overflow-hidden fx-grain opacity-[0.05]" />
       )}
-      {/* edge vignette */}
-      <div className="absolute inset-0 [box-shadow:inset_0_0_180px_60px_rgba(0,0,0,0.9)]" />
+      {/* The edge vignette is scoped to the hero (see Hero.tsx) rather than
+          living here, so it frames the opening shot only. */}
     </div>
   );
 }

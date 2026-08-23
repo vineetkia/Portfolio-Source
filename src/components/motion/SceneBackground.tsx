@@ -7,7 +7,9 @@ import {
   ScrollTrigger,
   registerGsap,
   prefersReducedMotion,
-  canUseHeavyMotion,
+  motionTier,
+  tierPixelRatio,
+  tierScale,
 } from "@/lib/gsap";
 
 // A persistent, low-key 3D depth field behind all content. As you scroll the
@@ -24,7 +26,7 @@ export default function SceneBackground() {
     if (!container) return;
     registerGsap();
     const reduced = prefersReducedMotion();
-    const heavy = canUseHeavyMotion();
+    const tier = motionTier();
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x050505, 0.03);
@@ -32,7 +34,7 @@ export default function SceneBackground() {
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
     camera.position.set(0, 0, 18);
 
-    const COUNT = 1800;
+    const COUNT = Math.round(1800 * tierScale(tier));
     const positions = new Float32Array(COUNT * 3);
     const colors = new Float32Array(COUNT * 3);
     const cA = new THREE.Color(0x0b3b2e);
@@ -61,7 +63,7 @@ export default function SceneBackground() {
     scene.add(points);
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(tierPixelRatio(tier, 1.5));
     container.appendChild(renderer.domElement);
 
     const resize = () => {
@@ -110,7 +112,9 @@ export default function SceneBackground() {
       render();
     };
 
-    if (reduced || !heavy) {
+    // Only reduced-motion freezes the field. Touch devices keep the drift;
+    // they just run fewer points at a lower pixel ratio.
+    if (reduced) {
       render();
     } else {
       loop();
@@ -122,7 +126,7 @@ export default function SceneBackground() {
           cancelAnimationFrame(raf);
           raf = null;
         }
-      } else if (!reduced && heavy && raf === null) {
+      } else if (!reduced && raf === null) {
         loop();
       }
     };

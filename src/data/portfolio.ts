@@ -7,9 +7,9 @@ export const profile = {
   role: "AI Software Engineer",
   tagline: "AI software engineer building agentic, AI-native platforms on top of resilient distributed systems.",
   intro:
-    "I'm a software engineer with 3+ years of experience shipping production systems in financial technology. I'm currently pursuing my Master's in Computer Software Engineering at San Jose State University in the Bay Area, after a 2026 software-engineering internship at Microsoft.",
+    "I'm a software engineer with 4+ years of experience shipping production systems in financial technology. I'm currently pursuing my Master's in Computer Software Engineering at San Jose State University in the Bay Area, after a 2026 software-engineering internship at Microsoft.",
   location: "San Francisco Bay Area, CA",
-  photo: "/vineet-kumar.jpeg",
+  photo: "/vineet-portrait.jpg",
   email: "vineetkia@gmail.com",
   phone: "+1 408 581 4026",
   linkedin: "https://www.linkedin.com/in/-vineet/",
@@ -19,13 +19,13 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I spent three and a half years at ION Trading building trade-processing systems for global financial institutions — working across C#, Java, and C++, integrating Kafka and ActiveMQ for real-time data exchange, and automating infrastructure that cut multi-week processes down to minutes.",
-    "Now I'm at San Jose State University earning my Master's in Computer Software Engineering, where I've built everything from a self-healing microservice mesh with AI-driven root-cause analysis to a clinical decision-support engine with auditable diagnoses. I care about clean architecture, distributed systems, and using AI where it genuinely earns its place.",
-    "Beyond coursework, I recently interned at Microsoft, mentor engineers, and ship side projects ranging from SaaS platforms to crypto trading bots.",
+    "Last summer I interned at Microsoft on the platform behind Sentinel's data lake, building a workload-placement engine for about 7 million pipeline jobs. The part I'm proudest of wasn't code: I questioned an assumption the team had designed around, checked it against 30 days of production data, and found it was wrong.",
+    "Before that, three and a half years at ION Trading writing trade systems in C#, Java, and C++. Real users, real money, real 2am pages. It taught me that boring and well-tested beats clever.",
+    "Now I'm finishing a Master's at San Jose State, graduating May 2027, and co-founding TrueStar on the side. I'd rather work on something hard with people who know more than me than be the most confident person in the room.",
   ],
   stats: [
-    { value: "3+", label: "Years in tech" },
-    { value: "10+", label: "Projects shipped" },
+    { value: "4+", label: "Years in tech" },
+    { value: "14+", label: "Projects shipped" },
     { value: "120+", label: "Modules automated" },
     { value: "3.87", label: "Undergrad GPA" },
   ],
@@ -74,19 +74,14 @@ export const experience: Experience[] = [
     ],
     tags: ["C#", "Java", "C++", "Apache Camel", "Kafka", "ActiveMQ", "PowerShell", "SonarQube"],
   },
-  {
-    role: "Microsoft Learn Student Ambassador",
-    company: "Microsoft",
-    location: "Vellore, India",
-    period: "Jan 2020 — Aug 2021",
-    summary:
-      "Led hands-on cloud and full-stack workshops as a Beta-ranked Student Ambassador.",
-    highlights: [
-      "Facilitated hands-on workshops for 150 students, achieving 100% completion of a full-stack deployment project using Node.js, Docker, and Nginx.",
-      "Conducted Azure sessions for 200+ participants on cloud computing, spot VMs, and Apache HTTP servers.",
-    ],
-    tags: ["Azure", "Node.js", "Docker", "Nginx"],
-  },
+];
+
+// Volunteering / community work. Kept out of `experience` (paid roles) and
+// rendered under Education & Credentials instead.
+export const volunteering: string[] = [
+  "Microsoft Learn Student Ambassador (Beta rank), Microsoft — Jan 2020 to Aug 2021.",
+  "Ran hands-on workshops for 150 students, with every attendee completing a full-stack deployment using Node.js, Docker, and Nginx.",
+  "Led Azure sessions for 200+ participants on cloud computing, spot VMs, and Apache HTTP servers.",
 ];
 
 export type AsciiScene =

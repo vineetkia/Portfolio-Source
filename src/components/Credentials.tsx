@@ -1,11 +1,12 @@
 "use client";
 
-import { GraduationCap, BadgeCheck, Trophy, Users } from "lucide-react";
+import { GraduationCap, BadgeCheck, Trophy, Users, HeartHandshake } from "lucide-react";
 import {
   education,
   certifications,
   accomplishments,
   mentorship,
+  volunteering,
 } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import SplitHeading from "./motion/SplitHeading";
@@ -15,6 +16,7 @@ const panels = [
   { title: "Certifications", Icon: BadgeCheck, items: certifications },
   { title: "Achievements", Icon: Trophy, items: accomplishments },
   { title: "Mentorship", Icon: Users, items: mentorship },
+  { title: "Volunteering", Icon: HeartHandshake, items: volunteering },
 ];
 
 export default function Credentials() {
@@ -69,7 +71,7 @@ export default function Credentials() {
           </div>
         </Reveal>
 
-        {/* Certifications · Achievements · Mentorship */}
+        {/* Certifications · Achievements · Mentorship · Volunteering */}
         <div className="space-y-5">
           {panels.map((p, i) => (
             <Reveal

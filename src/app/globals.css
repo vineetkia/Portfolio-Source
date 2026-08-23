@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Justified body prose. Ragged-right on narrow screens (justification opens
+   ugly word-gaps in a phone-width column), justified with hyphenation from
+   `sm` up where the measure is wide enough to look clean. */
+@utility prose-justify {
+  text-wrap: pretty;
+  @media (width >= 40rem) {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
+
+
 :root {
   /* Brand */
   --background: 0 0% 2%;

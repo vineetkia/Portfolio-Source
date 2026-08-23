@@ -3,13 +3,19 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/data/portfolio";
+import { GitHubIcon, LinkedInIcon } from "./icons";
+
+const socialLinks = [
+  { label: "GitHub", href: profile.github, Icon: GitHubIcon },
+  { label: "LinkedIn", href: profile.linkedin, Icon: LinkedInIcon },
+];
 
 const links = [
   { href: "#top", label: "Home" },
   { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
   { href: "#startup", label: "TrueStar" },
   { href: "#projects", label: "Projects" },
+  { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
   { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
@@ -75,7 +81,7 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
               e.preventDefault();
               navigate("#top", "Home");
             }}
-            className="font-heading text-lg font-bold tracking-tight text-white"
+            className="-m-2 flex items-center p-2 font-heading text-lg font-bold tracking-tight text-white"
           >
             {profile.initials}
             <span className="text-emerald-400">.</span>
@@ -90,7 +96,7 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
                     e.preventDefault();
                     navigate(link.href, link.label);
                   }}
-                  className={`text-sm transition-colors ${
+                  className={`-my-2 inline-flex items-center py-2 text-sm transition-colors ${
                     active === link.href
                       ? "text-emerald-400"
                       : "text-white/60 hover:text-white"
@@ -103,13 +109,26 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
           </ul>
 
           <div className="hidden items-center gap-2 md:flex">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition-colors hover:border-emerald-500/40 hover:text-emerald-400"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
             <button
               type="button"
               onClick={() =>
                 window.dispatchEvent(new Event("vinet:open-command"))
               }
               aria-label="Open command palette"
-              className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs text-white/50 transition-colors hover:border-white/25 hover:text-white"
+              className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2.5 font-mono text-xs text-white/50 transition-colors hover:border-white/25 hover:text-white [@media(pointer:fine)]:py-1.5"
             >
               <span className="text-white/40">⌘</span>K
             </button>
@@ -179,6 +198,29 @@ export default function Nav({ visible = true }: { visible?: boolean }) {
         >
           Résumé
         </a>
+
+        <div
+          style={{
+            transitionDelay: open ? `${links.length * 60 + 140}ms` : "0ms",
+          }}
+          className={`mt-7 flex items-center gap-4 transition-all duration-300 ${
+            open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+        >
+          {socialLinks.map(({ label, href, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              onClick={() => setOpen(false)}
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-emerald-500/40 hover:text-emerald-400"
+            >
+              <Icon className="h-5 w-5" />
+            </a>
+          ))}
+        </div>
       </div>
     </>
   );

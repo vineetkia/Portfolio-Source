@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { motionTier, tierPixelRatio } from "@/lib/gsap";
 
 // A slowly rotating 3D service mesh: nodes (services) distributed across a
 // sphere, wired to their nearest neighbours, with light pulses traveling the
@@ -26,7 +27,9 @@ export function SystemsGraphScene({ className }: { className?: string }) {
     const group = new THREE.Group();
     scene.add(group);
 
-    const NODE_COUNT = 22;
+    // Same constellation, fewer nodes on small hardware.
+    const tier = motionTier();
+    const NODE_COUNT = tier === "mobile" ? 14 : tier === "tablet" ? 18 : 22;
     const RADIUS = 2.6;
     const nodes: THREE.Vector3[] = [];
     const golden = Math.PI * (3 - Math.sqrt(5));
@@ -43,9 +46,10 @@ export function SystemsGraphScene({ className }: { className?: string }) {
       );
     }
 
-    const nodeGeo = new THREE.SphereGeometry(0.07, 12, 12);
+    const seg = tier === "mobile" ? 8 : 12;
+    const nodeGeo = new THREE.SphereGeometry(0.07, seg, seg);
     const nodeMat = new THREE.MeshBasicMaterial({ color: 0x34d399 });
-    const haloGeo = new THREE.SphereGeometry(0.15, 12, 12);
+    const haloGeo = new THREE.SphereGeometry(0.15, seg, seg);
     const haloMat = new THREE.MeshBasicMaterial({
       color: 0x10b981,
       transparent: true,
@@ -128,7 +132,7 @@ export function SystemsGraphScene({ className }: { className?: string }) {
     const pulses: Pulse[] = Array.from({ length: PULSE_COUNT }, newPulse);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(tierPixelRatio(tier, 2));
     container.appendChild(renderer.domElement);
 
     // True while the drawing buffer is released (canvas shrunk to 1x1 off-screen).

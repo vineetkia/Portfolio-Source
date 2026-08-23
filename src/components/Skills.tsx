@@ -1,52 +1,39 @@
 "use client";
 
-import { useRef } from "react";
 import { skills } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import SplitHeading from "./motion/SplitHeading";
-import {
-  gsap,
-  useGSAP,
-  registerGsap,
-  prefersReducedMotion,
-} from "@/lib/gsap";
 
-const proficiencies = [
-  { label: "AI Integration (RAG, LLMs, Agents)", value: 88 },
-  { label: "Distributed Systems & Microservices", value: 92 },
-  { label: "TypeScript / React / Next.js", value: 88 },
-  { label: "Java / C# / C++", value: 90 },
-  { label: "Cloud & DevOps (AWS, Azure, Docker)", value: 85 },
+// A plain capability table: area on the left, the actual tools on the right.
+// No self-assigned percentages — they invite an argument nobody can settle.
+const capabilities = [
+  {
+    area: "AI & Retrieval",
+    tools: "LLMs, RAG, AI agents, embeddings, vector search, Azure OpenAI",
+  },
+  {
+    area: "Distributed Systems",
+    tools: "Microservices, gRPC, Kafka, observability, fault tolerance",
+  },
+  {
+    area: "Backend",
+    tools: "Java, C#, C++, Python, Spring, FastAPI, Node.js",
+  },
+  {
+    area: "Frontend",
+    tools: "TypeScript, React, Next.js, Tailwind CSS",
+  },
+  {
+    area: "Data",
+    tools: "PostgreSQL, Redis, MongoDB, FAISS, Pinecone",
+  },
+  {
+    area: "Cloud & Delivery",
+    tools: "AWS, Azure, Docker, Kubernetes, CI/CD, Linux",
+  },
 ];
 
 export default function Skills() {
-  const barsRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      registerGsap();
-      const fills = gsap.utils.toArray<HTMLElement>("[data-bar]", barsRef.current);
-      fills.forEach((fill) => {
-        const value = Number(fill.dataset.bar);
-        if (prefersReducedMotion()) {
-          gsap.set(fill, { width: `${value}%` });
-          return;
-        }
-        gsap.fromTo(
-          fill,
-          { width: "0%" },
-          {
-            width: `${value}%`,
-            ease: "power3.out",
-            duration: 1.2,
-            scrollTrigger: { trigger: fill, start: "top 92%", once: true },
-          }
-        );
-      });
-    },
-    { scope: barsRef }
-  );
-
   return (
     <section id="skills" className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
@@ -59,22 +46,27 @@ export default function Skills() {
             text="What I work with"
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
-          <div ref={barsRef} className="mt-8 space-y-6">
-            {proficiencies.map((p) => (
-              <div key={p.label}>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-white/80">{p.label}</span>
-                  <span className="font-mono text-white/50">{p.value}%</span>
-                </div>
-                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <div
-                    data-bar={p.value}
-                    style={{ width: `${p.value}%` }}
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400"
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="mt-8 overflow-hidden rounded-xl border border-white/10">
+            <table className="w-full border-collapse text-left text-sm">
+              <tbody>
+                {capabilities.map((c, i) => (
+                  <tr
+                    key={c.area}
+                    className={
+                      i > 0 ? "border-t border-white/10 align-top" : "align-top"
+                    }
+                  >
+                    <th
+                      scope="row"
+                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-white/85 sm:w-1/3 sm:px-5"
+                    >
+                      {c.area}
+                    </th>
+                    <td className="px-4 py-3 text-white/55 sm:px-5">{c.tools}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </Reveal>
 
@@ -82,17 +74,17 @@ export default function Skills() {
           <h3 className="font-heading text-xl font-semibold text-white">
             My approach
           </h3>
-          <p className="mt-4 text-base leading-7 text-white/60">
-            I gravitate toward the hard parts of software — distributed systems,
-            real-time data, and the architecture that keeps them resilient. Three
-            years in fintech taught me that maintainable, well-tested code beats
-            clever code every time.
+          <p className="prose-justify mt-4 text-base leading-7 text-white/60">
+            Most of what I know came from maintaining systems other people had
+            to rely on. Production fintech work taught me that boring,
+            well-tested code is usually the right answer, and that the
+            interesting part of a problem is rarely the part you expected.
           </p>
-          <p className="mt-4 text-base leading-7 text-white/60">
-            I reach for AI where it genuinely earns its place, pair it with
-            deterministic safeguards, and care about the details — performance,
-            accessibility, and the small interactions that make software feel
-            considered.
+          <p className="prose-justify mt-4 text-base leading-7 text-white/60">
+            I use AI where it earns its place and put deterministic guardrails
+            around it, because a model that is confidently wrong is worse than
+            no model at all. I would rather check an assumption against real
+            data than defend it, and I am still learning plenty.
           </p>
 
           <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">

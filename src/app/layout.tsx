@@ -33,7 +33,7 @@ const fraunces = Fraunces({
 });
 
 const description =
-  "Vineet Kumar — AI software engineer with 3+ years in fintech, now pursuing an MS at San Jose State University after a 2026 software engineering internship at Microsoft. Building AI-native platforms, LLM/RAG systems, and resilient distributed systems.";
+  "Vineet Kumar — AI software engineer with 4+ years in fintech, now pursuing an MS at San Jose State University after a 2026 software engineering internship at Microsoft. Building AI-native platforms, LLM/RAG systems, and resilient distributed systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vinet.dev"),

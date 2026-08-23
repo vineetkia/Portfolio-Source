@@ -13,11 +13,12 @@ export default function Home() {
   return (
     <SiteShell>
       <Hero />
-      <About />
-      <Experience />
+      {/* The stack ribbon rides directly under the hero's status strip. */}
       <Marquee />
+      <About />
       <Startup />
       <Projects />
+      <Experience />
       <Skills />
       <Credentials />
       <Contact />

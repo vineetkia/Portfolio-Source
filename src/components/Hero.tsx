@@ -68,6 +68,12 @@ export default function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_55%_at_50%_55%,transparent,rgba(5,5,5,0.45))]"
       />
+      {/* Edge vignette, scoped to the opening shot. Previously a global fixed
+          overlay; keeping it here frames the hero without darkening the rest. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_180px_60px_rgba(0,0,0,0.9)]"
+      />
 
       <div
         data-hero="content"

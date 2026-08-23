@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { motionTier, tierPixelRatio } from "@/lib/gsap";
 
 // Multi-agent constellation: four agents (TrueStar's TARS) orbit a central
 // synthesis core, firing pulses inward as they merge findings and across the
@@ -19,7 +20,8 @@ export function AgentConstellation({ className }: { className?: string }) {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const tier = motionTier();
+    const dpr = tierPixelRatio(tier, 2);
 
     let width = 0;
     let height = 0;

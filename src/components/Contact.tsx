@@ -7,6 +7,7 @@ import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { GitHubIcon, LinkedInIcon } from "./icons";
 import Reveal from "./Reveal";
 import Magnetic from "./motion/Magnetic";
+import { motionTier, tierScale } from "@/lib/gsap";
 
 const SparklesCore = dynamic(
   () => import("@/components/ui/sparkles").then((m) => m.SparklesCore),
@@ -19,11 +20,19 @@ const socials = [
 ];
 
 export default function Contact() {
+  // Same glow, fewer particles on touch hardware. The sparkles field is a
+  // client-only dynamic import, so reading the tier during render is safe here.
+  const density = Math.round(420 * tierScale(motionTier()));
+
   return (
     <section
       id="contact"
       className="relative flex min-h-[85vh] items-center overflow-hidden py-24 sm:py-32"
     >
+      {/* Opaque base: hides the global 3D field behind this section so the
+          sparkles are the only particle effect here. Sits below everything. */}
+      <div aria-hidden className="absolute inset-0 bg-background" />
+
       {/* Seamless sparkles glow — radial-masked on all sides so there is no
           visible box, only a soft particle field around the heading. */}
       <div className="pointer-events-none absolute inset-x-0 top-1/2 h-[40rem] -translate-y-1/2 [mask-image:radial-gradient(55%_45%_at_50%_42%,white,transparent_72%)]">
@@ -31,7 +40,7 @@ export default function Contact() {
           background="transparent"
           minSize={0.4}
           maxSize={1.1}
-          particleDensity={420}
+          particleDensity={density}
           speed={1.4}
           className="h-full w-full"
           particleColor="#34d399"

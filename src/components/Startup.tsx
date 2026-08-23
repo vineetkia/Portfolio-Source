@@ -34,7 +34,7 @@ export default function Startup() {
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 03 — startup"}
+            {"// 02 — truestar"}
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-3">
             <GlitchText
@@ -48,7 +48,7 @@ export default function Startup() {
             </span>
           </div>
           <p className="mt-2 font-mono text-emerald-400">{startup.tagline}</p>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-white/60">
+          <p className="prose-justify mt-5 max-w-3xl text-base leading-7 text-white/60">
             {startup.description}
           </p>
         </Reveal>

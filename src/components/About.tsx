@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import dynamic from "next/dynamic";
-import { about } from "@/data/portfolio";
+import Image from "next/image";
+import { about, profile } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import SplitHeading from "./motion/SplitHeading";
 import {
@@ -12,12 +12,6 @@ import {
   prefersReducedMotion,
   canUseHeavyMotion,
 } from "@/lib/gsap";
-
-const SystemsGraphScene = dynamic(
-  () =>
-    import("@/components/ui/systems-graph").then((m) => m.SystemsGraphScene),
-  { ssr: false }
-);
 
 const techStack = [
   "LLMs / RAG",
@@ -127,10 +121,10 @@ export default function About() {
           </div>
           <SplitHeading
             as="h2"
-            text="AI engineer with a systems mindset"
+            text="Still asking questions"
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
-          <div className="mt-6 space-y-4 text-base leading-7 text-white/60">
+          <div className="prose-justify mt-6 space-y-4 text-base leading-7 text-white/60">
             {about.paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -148,7 +142,7 @@ export default function About() {
           </ul>
         </Reveal>
 
-        {/* Luxury 3D-tilt visual: double-bezel frame + live systems mesh */}
+        {/* Luxury 3D-tilt visual: double-bezel frame around the portrait */}
         <div
           className="order-1 md:order-2"
           style={{ perspective: "1200px" }}
@@ -159,38 +153,54 @@ export default function About() {
             style={{ transformStyle: "preserve-3d" }}
           >
             <div className="relative aspect-square overflow-hidden rounded-[1.65rem] border border-white/10 bg-zinc-950">
-              <SystemsGraphScene className="absolute inset-0 h-full w-full" />
+              <Image
+                src={profile.photo}
+                alt={profile.name}
+                fill
+                sizes="(min-width: 768px) 40vw, 90vw"
+                priority
+                // 3:4 source in a square frame: bias the crop upward so the
+                // face sits in the frame rather than being centred out of it.
+                className="object-cover object-[50%_22%]"
+              />
 
-              {/* moving sheen + vignette */}
+              {/* moving sheen */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500 group-hover:opacity-100 bg-[linear-gradient(125deg,transparent_42%,rgba(255,255,255,0.07)_50%,transparent_58%)]"
               />
+              {/* Vignette: a soft radial falloff plus an inset shadow, so the
+                  portrait sinks into the frame instead of ending at a hard edge. */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.42)_62%,rgba(0,0,0,0.82)_100%)]"
               />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_95px_30px_rgba(0,0,0,0.7)]"
+              />
+            </div>
+          </div>
 
-              <div className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-400/70">
-                systems.mesh
-              </div>
-
-              <div ref={statsRef} className="absolute bottom-5 left-5">
-                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-                  {about.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <div
-                        data-count={stat.value}
-                        className="font-heading text-2xl font-semibold tabular-nums text-emerald-400"
-                      >
-                        {stat.value}
-                      </div>
-                      <div className="text-xs text-white/50">{stat.label}</div>
-                    </div>
-                  ))}
+          {/* Stats live under the portrait, not on top of it, so nothing
+              competes with the photo's own colours. */}
+          <div ref={statsRef} className="mt-6 grid grid-cols-4 gap-3">
+            {about.stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-center backdrop-blur-sm"
+              >
+                <div
+                  data-count={stat.value}
+                  className="font-heading text-xl font-semibold tabular-nums text-emerald-400 sm:text-2xl"
+                >
+                  {stat.value}
+                </div>
+                <div className="mt-0.5 text-[11px] leading-tight text-white/50">
+                  {stat.label}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

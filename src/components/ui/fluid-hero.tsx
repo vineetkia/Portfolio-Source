@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { motionTier, tierPixelRatio } from "@/lib/gsap";
 
 // A full-screen GLSL fluid: domain-warped fbm flowing in emerald/teal over
 // near-black, brightened and rippled under the cursor. Cheaper than the old
@@ -24,7 +25,7 @@ float noise(vec2 p){
 }
 float fbm(vec2 p){
   float v = 0.0, a = 0.5;
-  for(int i=0;i<5;i++){ v += a*noise(p); p *= 2.02; a *= 0.5; }
+  for(int i=0;i<OCTAVES;i++){ v += a*noise(p); p *= 2.02; a *= 0.5; }
   return v;
 }
 
@@ -100,16 +101,21 @@ export function FluidHero({ className }: { className?: string }) {
       uReduced: { value: prefersReduced ? 1 : 0 },
     };
 
+    // One fewer fbm octave on phones. The warp is dominated by the first
+    // octaves, so the flow reads the same while each pixel does ~20% less work.
+    const tier = motionTier();
+    const octaves = tier === "mobile" ? 4 : 5;
     const material = new THREE.ShaderMaterial({
       vertexShader: VERT,
-      fragmentShader: FRAG,
+      fragmentShader: `#define OCTAVES ${octaves}\n${FRAG}`,
       uniforms,
     });
     const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     scene.add(quad);
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    // Shader cost scales with pixel count, so the ratio is the main mobile lever.
+    renderer.setPixelRatio(tierPixelRatio(tier, 1.5));
     container.appendChild(renderer.domElement);
 
     // True while the drawing buffer is released (canvas shrunk to 1x1 off-screen).

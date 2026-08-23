@@ -38,6 +38,34 @@ export function prefersReducedMotion() {
   );
 }
 
+// Device tier for tuning animation COST, not whether animation happens.
+// Phones and tablets keep every scene and every motion; they just run at a
+// lower pixel ratio and lighter geometry so the look survives the hardware.
+//   "full"    desktop / large tablet with a fine pointer
+//   "tablet"  touch, 768px and up
+//   "mobile"  touch under 768px
+export type MotionTier = "full" | "tablet" | "mobile";
+
+export function motionTier(): MotionTier {
+  if (typeof window === "undefined") return "full";
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  if (!coarse && window.innerWidth >= 768) return "full";
+  return window.innerWidth >= 768 ? "tablet" : "mobile";
+}
+
+// Pixel-ratio ceiling per tier. Fragment-shader cost scales with the square of
+// this, so it is the single biggest lever on a phone.
+export function tierPixelRatio(tier: MotionTier, desktopCap = 1.5) {
+  const cap = tier === "full" ? desktopCap : tier === "tablet" ? 1.25 : 1;
+  return Math.min(window.devicePixelRatio || 1, cap);
+}
+
+// Scales counts (particles, nodes, pulses) so the composition reads the same
+// while doing measurably less work on smaller hardware.
+export function tierScale(tier: MotionTier) {
+  return tier === "full" ? 1 : tier === "tablet" ? 0.7 : 0.5;
+}
+
 // Smooth scroll + heavy scroll choreography are reserved for real pointers on
 // larger viewports — touch/small screens get the plain (still animated) layout.
 export function canUseHeavyMotion() {
