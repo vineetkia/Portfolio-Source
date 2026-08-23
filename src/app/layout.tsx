@@ -22,11 +22,14 @@ const spaceGrotesk = Space_Grotesk({
 
 // Editorial serif — used sparingly for high-contrast display accents against the
 // Grotesk/mono system (the "hybrid" hacker + editorial typography direction).
+// Used in exactly one place (the italic accent in Contact, below the fold), so
+// it ships only the rendered variant and stays off the critical path.
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  style: ["italic"],
+  weight: ["400"],
+  preload: false,
 });
 
 const description =

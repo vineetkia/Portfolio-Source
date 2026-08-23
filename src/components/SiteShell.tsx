@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { TerminalLoader } from "@/components/ui/terminal-loader";
 import { GlassFilter } from "@/components/ui/liquid-glass-button";
 import Nav from "./Nav";
@@ -11,7 +12,13 @@ import SmoothScroll from "./motion/SmoothScroll";
 import CommandPalette from "./CommandPalette";
 import ScrollProgress from "./motion/ScrollProgress";
 import NavTransition from "./motion/NavTransition";
-import SceneBackground from "./motion/SceneBackground";
+
+// Deferred: pulls in Three.js (about 511 KB raw). It is a fixed, ambient
+// backdrop behind all content, so loading it after first paint is invisible to
+// the user but keeps Three off the critical path.
+const SceneBackground = dynamic(() => import("./motion/SceneBackground"), {
+  ssr: false,
+});
 
 // Module-scoped flag: survives any remount of SiteShell within the page's
 // lifetime, so the intro loader can never replay mid-session even if React

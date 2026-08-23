@@ -281,17 +281,30 @@ export default function ProjectAscii({
       running = false;
       cancelAnimationFrame(raf);
     };
+    let onScreen = false;
     const io = new IntersectionObserver(
-      ([e]) => (e.isIntersecting ? start() : stop()),
+      ([e]) => {
+        onScreen = e.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
       { threshold: 0 }
     );
     io.observe(node);
+
+    // Also stop when the tab is backgrounded, not just off-screen.
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (onScreen) start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
     paint();
     if (!prefersReduced) start();
 
     return () => {
       stop();
       io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, [scene, seed]);
 

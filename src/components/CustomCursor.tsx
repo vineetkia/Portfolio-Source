@@ -99,11 +99,24 @@ export default function CustomCursor() {
     document.addEventListener("mouseleave", onLeave);
     raf = requestAnimationFrame(loop);
 
+    // The cursor is meaningless while the tab is backgrounded, so stop the
+    // loop instead of letting it idle.
+    const onVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (raf === 0) {
+        raf = requestAnimationFrame(loop);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
       document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(raf);
       document.body.classList.remove("has-custom-cursor");
     };

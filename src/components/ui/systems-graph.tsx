@@ -189,11 +189,24 @@ export function SystemsGraphScene({ className }: { className?: string }) {
       }
     };
 
+    let onScreen = false;
+
     const visibility = new IntersectionObserver(
-      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
       { threshold: 0 }
     );
     visibility.observe(container);
+
+    // Also stop when the tab is backgrounded, not just off-screen.
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (onScreen) start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     updatePulses();
     if (prefersReduced) render();
@@ -202,6 +215,7 @@ export function SystemsGraphScene({ className }: { className?: string }) {
     return () => {
       stop();
       visibility.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
       resizeObserver.disconnect();
       nodeGeo.dispose();
       nodeMat.dispose();

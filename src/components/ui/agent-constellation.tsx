@@ -170,11 +170,24 @@ export function AgentConstellation({ className }: { className?: string }) {
       }
     };
 
+    let onScreen = false;
+
     const io = new IntersectionObserver(
-      ([e]) => (e.isIntersecting ? start() : stop()),
+      ([e]) => {
+        onScreen = e.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
       { threshold: 0 }
     );
     io.observe(parent);
+
+    // Also stop when the tab is backgrounded, not just off-screen.
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (onScreen) start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     if (prefersReduced) draw();
     else start();
@@ -182,6 +195,7 @@ export function AgentConstellation({ className }: { className?: string }) {
     return () => {
       stop();
       io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
       ro.disconnect();
     };
   }, []);

@@ -157,12 +157,24 @@ export function FluidHero({ className }: { className?: string }) {
       }
     };
 
+    let onScreen = false;
     // Only run the flow while the hero is on-screen (perf).
     const visibility = new IntersectionObserver(
-      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
       { threshold: 0 }
     );
     visibility.observe(container);
+
+    // Also stop when the tab is backgrounded, not just off-screen.
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (onScreen) start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     if (prefersReduced) render();
     else start();
@@ -170,6 +182,7 @@ export function FluidHero({ className }: { className?: string }) {
     return () => {
       stop();
       visibility.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
       resizeObserver.disconnect();
       quad.geometry.dispose();
       material.dispose();
