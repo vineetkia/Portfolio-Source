@@ -294,27 +294,68 @@ export type SkillGroup = { title: string; items: string[] };
 export const skills: SkillGroup[] = [
   {
     title: "Languages",
-    items: ["C++", "C#", "Java", "Python", "C", "TypeScript", "JavaScript", "SQL", "Bash", "PowerShell"],
+    items: ["Java", "C#", "C++", "Python", "TypeScript", "SQL", "Bash"],
   },
   {
-    title: "AI & Data",
-    items: ["LLMs", "RAG", "Agents", "Azure OpenAI", "Embeddings", "Vector Search", "Inference", "FAISS", "Pinecone"],
+    title: "AI & Retrieval",
+    items: [
+      "LLMs",
+      "RAG",
+      "AI agents",
+      "Prompt engineering",
+      "Embeddings",
+      "Vector search",
+      "Azure OpenAI",
+      "Pinecone",
+      "FAISS",
+    ],
   },
   {
-    title: "Frameworks & Libraries",
-    items: ["React", "Next.js", "Node.js", "Spring", "Apache Camel", "FastAPI", "Tailwind CSS"],
+    title: "Backend & Distributed",
+    items: [
+      "Microservices",
+      "gRPC",
+      "REST APIs",
+      "Spring Boot",
+      "FastAPI",
+      "Node.js",
+      "Apache Kafka",
+      "ActiveMQ",
+      "Apache Camel",
+      "Fault tolerance",
+    ],
   },
   {
-    title: "Messaging & Data",
-    items: ["Apache Kafka", "RabbitMQ", "ActiveMQ", "PostgreSQL", "MongoDB", "Redis", "Cassandra", "Prisma"],
+    title: "Frontend",
+    items: ["React", "Next.js", "Tailwind CSS", "GSAP", "Three.js"],
   },
   {
-    title: "Cloud & Infrastructure",
-    items: ["AWS", "Azure", "Docker", "Kubernetes", "Linux", "Microservices", "Distributed Systems", "gRPC", "Nginx"],
+    title: "Data & Storage",
+    items: ["PostgreSQL", "Redis", "MongoDB", "MySQL", "Prisma", "Drizzle"],
+  },
+  {
+    title: "Cloud & Delivery",
+    items: [
+      "AWS",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+      "Linux",
+      "Nginx",
+      "OpenTelemetry",
+    ],
   },
   {
     title: "Practices",
-    items: ["OOP", "SOLID Principles", "Agile", "Test-Driven Development", "Design Patterns", "TOGAF"],
+    items: [
+      "OOP",
+      "SOLID",
+      "Design patterns",
+      "Test-driven development",
+      "Code review",
+      "Agile",
+    ],
   },
 ];
 

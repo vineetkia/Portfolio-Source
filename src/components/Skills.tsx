@@ -4,38 +4,12 @@ import { skills } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import SplitHeading from "./motion/SplitHeading";
 
-// A plain capability table: area on the left, the actual tools on the right.
-// No self-assigned percentages — they invite an argument nobody can settle.
-const capabilities = [
-  {
-    area: "AI & Retrieval",
-    tools: "LLMs, RAG, AI agents, embeddings, vector search, Azure OpenAI",
-  },
-  {
-    area: "Distributed Systems",
-    tools: "Microservices, gRPC, Kafka, observability, fault tolerance",
-  },
-  {
-    area: "Backend",
-    tools: "Java, C#, C++, Python, Spring, FastAPI, Node.js",
-  },
-  {
-    area: "Frontend",
-    tools: "TypeScript, React, Next.js, Tailwind CSS",
-  },
-  {
-    area: "Data",
-    tools: "PostgreSQL, Redis, MongoDB, FAISS, Pinecone",
-  },
-  {
-    area: "Cloud & Delivery",
-    tools: "AWS, Azure, Docker, Kubernetes, CI/CD, Linux",
-  },
-];
-
 export default function Skills() {
   return (
-    <section id="skills" className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
+    <section
+      id="skills"
+      className="relative mx-auto max-w-5xl px-6 py-24 sm:py-32"
+    >
       <Reveal>
         <div className="font-mono text-xs tracking-wider text-emerald-400/80">
           {"// 05 / skills"}
@@ -47,67 +21,43 @@ export default function Skills() {
         />
       </Reveal>
 
-      <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
-        <Reveal>
-          <h3 className="font-heading text-xl font-semibold text-white">
-            By area
-          </h3>
-          <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
-            <table className="w-full border-collapse text-left text-sm">
-              <tbody>
-                {capabilities.map((c, i) => (
-                  <tr
-                    key={c.area}
-                    className={
-                      i > 0 ? "border-t border-white/10 align-top" : "align-top"
-                    }
+      {/* One table, one row per area. Each tool appears exactly once, so the
+          list reads as a map of the stack rather than a repeated word cloud. */}
+      <Reveal delay={100}>
+        <div className="mt-10 overflow-hidden rounded-xl border border-white/10">
+          <table className="w-full border-collapse text-left text-sm">
+            <tbody>
+              {skills.map((group, i) => (
+                <tr
+                  key={group.title}
+                  className={`align-top transition-colors hover:bg-white/[0.03] ${
+                    i > 0 ? "border-t border-white/10" : ""
+                  }`}
+                >
+                  <th
+                    scope="row"
+                    className="w-[38%] px-4 py-4 font-medium text-emerald-400 sm:w-[26%] sm:px-6 sm:whitespace-nowrap"
                   >
-                    <th
-                      scope="row"
-                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-emerald-400 sm:w-1/3 sm:px-5"
-                    >
-                      {c.area}
-                    </th>
-                    <td className="px-4 py-3 text-white/55 sm:px-5">{c.tools}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
-
-        <Reveal delay={150}>
-          <h3 className="font-heading text-xl font-semibold text-white">
-            The toolbox
-          </h3>
-          {/* Same table treatment as the capability table on the left, so the
-              two columns read as one system. */}
-          <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
-            <table className="w-full border-collapse text-left text-sm">
-              <tbody>
-                {skills.map((group, i) => (
-                  <tr
-                    key={group.title}
-                    className={
-                      i > 0 ? "border-t border-white/10 align-top" : "align-top"
-                    }
-                  >
-                    <th
-                      scope="row"
-                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-emerald-400 sm:w-1/3 sm:px-5"
-                    >
-                      {group.title}
-                    </th>
-                    <td className="px-4 py-3 text-white/55 sm:px-5">
-                      {group.items.join(", ")}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
-      </div>
+                    {group.title}
+                  </th>
+                  <td className="px-4 py-4 sm:px-6">
+                    <ul className="flex flex-wrap gap-x-2 gap-y-1.5">
+                      {group.items.map((item) => (
+                        <li
+                          key={item}
+                          className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[13px] text-white/70"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Reveal>
     </section>
   );
 }
