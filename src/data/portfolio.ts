@@ -76,12 +76,37 @@ export const experience: Experience[] = [
   },
 ];
 
-// Volunteering / community work. Kept out of `experience` (paid roles) and
-// rendered under Education & Credentials instead.
-export const volunteering: string[] = [
-  "Microsoft Learn Student Ambassador (Beta rank), Microsoft — Jan 2020 to Aug 2021.",
-  "Ran hands-on workshops for 150 students, with every attendee completing a full-stack deployment using Node.js, Docker, and Nginx.",
-  "Led Azure sessions for 200+ participants on cloud computing, spot VMs, and Apache HTTP servers.",
+// Volunteering and mentorship, kept out of `experience` (paid roles) and
+// rendered as a second timeline under Education.
+export type Involvement = {
+  period: string;
+  role: string;
+  org: string;
+  detail: string;
+};
+
+export const involvement: Involvement[] = [
+  {
+    period: "Jan 2022 — Aug 2025",
+    role: "Mentor, new engineers",
+    org: "ION Group",
+    detail:
+      "Onboarded new hires on OOP, SOLID principles, and debugging, and ran the sessions that held the team at a 95% CI pass rate.",
+  },
+  {
+    period: "Jan 2020 — Aug 2021",
+    role: "Microsoft Learn Student Ambassador",
+    org: "Microsoft · Beta rank",
+    detail:
+      "Ran hands-on workshops for 150 students, every attendee shipping a full-stack deployment on Node.js, Docker, and Nginx, plus Azure sessions for 200+ participants.",
+  },
+  {
+    period: "2019 — 2022",
+    role: "Author, Code To Express",
+    org: "Vellore Institute of Technology",
+    detail:
+      "Wrote and maintained an open data-structures and algorithms repository used by 250+ students.",
+  },
 ];
 
 export type AsciiScene =
@@ -337,11 +362,6 @@ export const certifications: string[] = [
   "Fundamentals of Parallelism on Intel Architecture",
   "Cybersecurity and the Internet of Things",
   "Microsoft Learn Student Ambassador",
-];
-
-export const mentorship: string[] = [
-  "Mentored new hires at ION Group on OOP, SOLID principles, debugging, and coding practices.",
-  "Authored a DSA repository (Code To Express) benefiting 250+ students at VIT.",
 ];
 
 export const navLinks = [

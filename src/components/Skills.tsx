@@ -36,17 +36,23 @@ const capabilities = [
 export default function Skills() {
   return (
     <section id="skills" className="relative mx-auto max-w-6xl px-6 py-24 sm:py-32">
-      <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+      <Reveal>
+        <div className="font-mono text-xs tracking-wider text-emerald-400/80">
+          {"// 05 — skills"}
+        </div>
+        <SplitHeading
+          as="h2"
+          text="What I work with"
+          className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+        />
+      </Reveal>
+
+      <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-16">
         <Reveal>
-          <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-            {"// 05 — skills"}
-          </div>
-          <SplitHeading
-            as="h2"
-            text="What I work with"
-            className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
-          />
-          <div className="mt-8 overflow-hidden rounded-xl border border-white/10">
+          <h3 className="font-heading text-xl font-semibold text-white">
+            By area
+          </h3>
+          <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
             <table className="w-full border-collapse text-left text-sm">
               <tbody>
                 {capabilities.map((c, i) => (
@@ -70,34 +76,35 @@ export default function Skills() {
           </div>
         </Reveal>
 
-        <Reveal delay={150} className="flex flex-col justify-center">
+        <Reveal delay={150}>
           <h3 className="font-heading text-xl font-semibold text-white">
-            How I work
+            The toolbox
           </h3>
-          <p className="prose-justify mt-4 text-base leading-7 text-white/60">
-            Most of what I know came from maintaining systems other people had
-            to rely on. Production fintech work taught me that boring,
-            well-tested code is usually the right answer, and that the
-            interesting part of a problem is rarely the part you expected.
-          </p>
-          <p className="prose-justify mt-4 text-base leading-7 text-white/60">
-            I use AI where it earns its place and put deterministic guardrails
-            around it, because a model that is confidently wrong is worse than
-            no model at all. I would rather check an assumption against real
-            data than defend it, and I am still learning plenty.
-          </p>
-
-          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
-            {skills.map((group) => (
-              <div key={group.title} className="bg-black/60 p-4">
-                <div className="text-xs font-semibold uppercase tracking-wide text-emerald-400">
-                  {group.title}
-                </div>
-                <div className="mt-1 text-sm text-white/60">
-                  {group.items.slice(0, 4).join(" · ")}
-                </div>
-              </div>
-            ))}
+          {/* Same table treatment as the capability table on the left, so the
+              two columns read as one system. */}
+          <div className="mt-6 overflow-hidden rounded-xl border border-white/10">
+            <table className="w-full border-collapse text-left text-sm">
+              <tbody>
+                {skills.map((group, i) => (
+                  <tr
+                    key={group.title}
+                    className={
+                      i > 0 ? "border-t border-white/10 align-top" : "align-top"
+                    }
+                  >
+                    <th
+                      scope="row"
+                      className="w-2/5 whitespace-nowrap px-4 py-3 font-medium text-white/85 sm:w-1/3 sm:px-5"
+                    >
+                      {group.title}
+                    </th>
+                    <td className="px-4 py-3 text-white/55 sm:px-5">
+                      {group.items.join(", ")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </Reveal>
       </div>

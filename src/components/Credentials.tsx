@@ -1,12 +1,11 @@
 "use client";
 
-import { GraduationCap, BadgeCheck, Trophy, Users, HeartHandshake } from "lucide-react";
+import { GraduationCap, BadgeCheck, Trophy, HeartHandshake } from "lucide-react";
 import {
   education,
   certifications,
   accomplishments,
-  mentorship,
-  volunteering,
+  involvement,
 } from "@/data/portfolio";
 import Reveal from "./Reveal";
 import SplitHeading from "./motion/SplitHeading";
@@ -15,8 +14,6 @@ import TimelineLine from "./motion/TimelineLine";
 const panels = [
   { title: "Certifications", Icon: BadgeCheck, items: certifications },
   { title: "Achievements", Icon: Trophy, items: accomplishments },
-  { title: "Mentorship", Icon: Users, items: mentorship },
-  { title: "Volunteering", Icon: HeartHandshake, items: volunteering },
 ];
 
 export default function Credentials() {
@@ -69,9 +66,36 @@ export default function Credentials() {
               ))}
             </ul>
           </div>
+
+          {/* Second timeline: volunteering + mentorship, same treatment. */}
+          <h3 className="mb-6 mt-12 flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wide text-emerald-400">
+            <HeartHandshake className="h-4 w-4" /> Volunteering &amp; mentorship
+          </h3>
+          <div className="relative pl-8">
+            <TimelineLine className="absolute bottom-2 left-[6px] top-2 w-[3px] text-emerald-400" />
+            <ul className="space-y-8">
+              {involvement.map((v) => (
+                <li key={`${v.role}-${v.period}`} className="relative">
+                  <span className="absolute -left-8 top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-emerald-400 bg-black">
+                    <span className="h-1 w-1 rounded-full bg-emerald-400" />
+                  </span>
+                  <div className="font-mono text-xs text-white/40">
+                    {v.period}
+                  </div>
+                  <div className="mt-1 font-heading text-lg font-semibold text-white">
+                    {v.role}
+                  </div>
+                  <div className="text-sm text-emerald-400/90">{v.org}</div>
+                  <div className="mt-1 text-sm leading-6 text-white/60">
+                    {v.detail}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
 
-        {/* Certifications · Achievements · Mentorship · Volunteering */}
+        {/* Certifications · Achievements */}
         <div className="space-y-5">
           {panels.map((p, i) => (
             <Reveal
