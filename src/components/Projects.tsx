@@ -186,7 +186,7 @@ export default function Projects() {
           </div>
           <SplitHeading
             as="h2"
-            text="Things I've built"
+            text="Projects"
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
           <p className="prose-justify mt-3 max-w-2xl text-white/60">
