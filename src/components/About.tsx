@@ -121,7 +121,7 @@ export default function About() {
           </div>
           <SplitHeading
             as="h2"
-            text="Still asking questions"
+            text="About me"
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
           <div className="prose-justify mt-6 space-y-4 text-base leading-7 text-white/60">

@@ -186,13 +186,13 @@ export default function Projects() {
           </div>
           <SplitHeading
             as="h2"
-            text="Selected work"
+            text="Things I've built"
             className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
           />
           <p className="prose-justify mt-3 max-w-2xl text-white/60">
-            Ordered by today&apos;s most in-demand skills — AI/ML and distributed
-            systems first. Filter by focus, then open any card for the full
-            breakdown.
+            Mostly grad-school and side projects, AI and distributed systems
+            first. Filter by focus, or open a card to see what it actually
+            does.
           </p>
         </Reveal>
 

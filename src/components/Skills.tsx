@@ -72,7 +72,7 @@ export default function Skills() {
 
         <Reveal delay={150} className="flex flex-col justify-center">
           <h3 className="font-heading text-xl font-semibold text-white">
-            My approach
+            How I work
           </h3>
           <p className="prose-justify mt-4 text-base leading-7 text-white/60">
             Most of what I know came from maintaining systems other people had

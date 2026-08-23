@@ -27,11 +27,11 @@ export default function Credentials() {
     >
       <Reveal>
         <div className="font-mono text-xs tracking-wider text-emerald-400/80">
-          {"// 06 — credentials"}
+          {"// 06 — education"}
         </div>
         <SplitHeading
           as="h2"
-          text="Education & credentials"
+          text="Education and everything else"
           className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
         />
       </Reveal>
