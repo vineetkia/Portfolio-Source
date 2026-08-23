@@ -51,7 +51,7 @@ export const experience: Experience[] = [
     summary:
       "Software engineering intern on the Microsoft Security IQ team (formerly the Sentinel Platform), building the large-scale data-ingestion platform that powers Microsoft Sentinel's data lake.",
     highlights: [
-      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 82K shared-tenant pipelines onto right-sized Kubernetes compute — engineered to raise fleet CPU utilization about 5x (11% to 59%) and cut compute cost.",
+      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 7 million shared-tenant pipeline jobs onto right-sized Kubernetes compute — engineered to raise fleet CPU utilization about 5x (11% to 59%) and cut compute cost.",
       "Architected a two-step, config-driven placement algorithm with a network-boundary (VNet) match guard that structurally prevents mis-routing across isolated networks, shipped behind feature flags for zero-downtime, reversible rollout.",
       "Led a data-driven design correction — analyzing 603K production runs over 30 days in Kusto (ADX) on Azure Data Lake — then hardened it with 22 integration tests and a classifier suite.",
     ],
