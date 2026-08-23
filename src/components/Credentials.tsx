@@ -28,8 +28,8 @@ export default function Credentials() {
         </div>
         <SplitHeading
           as="h2"
-          text="Education and everything else"
-          className="font-heading mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+          text="Education, achievements, volunteering and mentorship"
+          className="font-heading mt-3 block text-2xl font-semibold tracking-tight text-white sm:text-3xl lg:text-4xl"
         />
       </Reveal>
 

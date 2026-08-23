@@ -1,4 +1,5 @@
 import SiteShell from "@/components/SiteShell";
+import SectionRule from "@/components/SectionRule";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
@@ -18,8 +19,11 @@ export default function Home() {
       <About />
       <Startup />
       <Projects />
+      <SectionRule />
       <Experience />
+      <SectionRule />
       <Skills />
+      <SectionRule />
       <Credentials />
       <Contact />
     </SiteShell>
