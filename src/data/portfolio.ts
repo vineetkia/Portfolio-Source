@@ -19,7 +19,7 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "Last summer I interned at Microsoft on the platform behind Sentinel's data lake, building a workload-placement engine for about 7 million pipeline jobs. The part I'm proudest of wasn't code: I questioned an assumption the team had designed around, checked it against 30 days of production data, and found it was wrong.",
+    "Last summer I interned at Microsoft on the platform behind Sentinel's data lake, building a workload-placement engine for about 7 million pipeline jobs. The part I'm proudest of wasn't code: I questioned an assumption the team had designed around, checked it against 7 million job runs over 30 days, and found it was wrong.",
     "Before that, three and a half years at ION Trading writing trade systems in C#, Java, and C++. Real users, real money, real 2am pages. It taught me that boring and well-tested beats clever.",
     "Now I'm finishing a Master's at San Jose State, graduating May 2027, and co-founding TrueStar on the side. I'd rather work on something hard with people who know more than me than be the most confident person in the room.",
   ],
@@ -51,9 +51,9 @@ export const experience: Experience[] = [
     summary:
       "Software engineering intern on the Microsoft Security IQ team (formerly the Sentinel Platform), building the large-scale data-ingestion platform that powers Microsoft Sentinel's data lake.",
     highlights: [
-      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 7 million shared-tenant pipeline jobs onto right-sized Kubernetes compute, engineered to raise fleet CPU utilization about 5x (11% to 59%) and cut compute cost.",
+      "Designed and delivered an end-to-end intelligent workload-placement engine in C# and .NET that routes about 7 million shared-tenant pipeline jobs onto right-sized Kubernetes compute, consolidating the fleet from D16 onto D8 SKU nodes to save $150,000 per month across 4 regions, about $1.8 million yearly on projection.",
       "Architected a two-step, config-driven placement algorithm with a network-boundary (VNet) match guard that structurally prevents mis-routing across isolated networks, shipped behind feature flags for zero-downtime, reversible rollout.",
-      "Led a data-driven design correction by analyzing 603K production runs over 30 days in Kusto (ADX) on Azure Data Lake, then hardened it with 22 integration tests and a classifier suite.",
+      "Led a data-driven design correction by analyzing 7 million job runs over 30 days in Kusto (ADX) on Azure Data Lake, then hardened it with 22 integration tests and a classifier suite.",
     ],
     tags: ["C#", ".NET", "Kubernetes", "Kusto (ADX)", "Azure Data Lake", "Distributed Systems", "Feature Flags"],
   },
@@ -164,7 +164,7 @@ export const projects: Project[] = [
     tags: ["LLM Agents", "AI Root-Cause", "Inference", "gRPC", "FastAPI", "OpenTelemetry", "Docker"],
     context: "CMPE 273 · Enterprise Distributed Systems · Final Project",
     highlights: [
-      "16-container mesh with failure detection via 2-of-3 statistical consensus.",
+      "18-microservice mesh with failure detection via 2-of-3 statistical consensus.",
       "Dependency-graph root-cause algorithm distinguishing symptom from cause.",
       "LLM reasoning (Azure GPT) with a deterministic rule-engine fallback and 12s cooldown.",
     ],

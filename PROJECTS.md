@@ -22,9 +22,9 @@ Docker, Framer Motion.
 
 ### 2. Self-Healing AI Ops Mesh · CMPE 273 (Final)
 A gRPC service mesh with AI-driven root-cause analysis and autonomous remediation. Detects
-failures in <5s via 2-of-3 statistical consensus, walks the dependency graph to find the
+failures via 2-of-3 statistical consensus, walks the dependency graph to find the
 deepest failing dependency, and applies bounded remediation in <10s. An LLM (Azure GPT-5.3)
-drives reasoning while a deterministic rule engine guarantees safety. 16 Docker containers.
+drives reasoning while a deterministic rule engine guarantees safety. 18 microservices.
 **Stack:** Python 3.11, FastAPI, gRPC, React 18, Vite, OpenTelemetry, Jaeger, Prometheus,
 NATS, etcd, Docker Compose.
 **My role:** Docker orchestration, gRPC proto contracts, resilience primitives
@@ -39,7 +39,6 @@ biomedical passages retrieved from MedQuAD. Designed so every prediction is audi
 stores, Azure OpenAI embeddings + GPT, cross-encoder rerank. 24,063 passages, 23,839 rules.
 **Repo:** https://github.com/vineetkia/Symptom-Based-Disease-Identification-AI-Inference
 
-### 4. AI Campus Marketplace · CMPE 202 (Group, Team Lead)
 ### 4. AI Assisted Marketplace · CMPE 202 (Group, Team Lead)
 A full-stack, microservice marketplace for students to buy/sell textbooks, electronics,
 and essentials — with AI product search, real-time chat, role-based auth, and S3 image storage,
@@ -92,7 +91,7 @@ Rerank 3.5, Tavily, LiveKit, Deepgram, Stripe Connect, Drizzle, Docker.
 - **Software Engineer Intern — Microsoft** · Redmond, WA (On-site) · May 2026 – Aug 2026
   - Team: Microsoft Security IQ (formerly Sentinel Platform) — the large-scale data-ingestion platform powering Microsoft Sentinel's data lake.
   - Intelligent workload-placement engine (C#/.NET) routing ~7M shared-tenant pipeline jobs onto right-sized Kubernetes compute; engineered to raise fleet CPU utilization ~5x (11% to 59%) and cut compute cost.
-  - Two-step, config-driven placement algorithm with a network-boundary (VNet) match guard behind feature flags for zero-downtime rollout; data-driven correction validated across 603K runs / 30 days in Kusto (ADX) on Azure Data Lake; hardened with 22 integration tests + a classifier suite.
+  - Two-step, config-driven placement algorithm with a network-boundary (VNet) match guard behind feature flags for zero-downtime rollout; data-driven correction validated across 7 million job runs / 30 days in Kusto (ADX) on Azure Data Lake; hardened with 22 integration tests + a classifier suite.
 - **Software Development Engineer — ION Trading** · Pune, India · Jan 2022 – Aug 2025
   - C# desktop interface for market data (XML); setup 1 week → 10 min.
   - Apache Camel + Java trade framework; Kafka + ActiveMQ for ExxonMobil real-time trade data.
