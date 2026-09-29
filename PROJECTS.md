@@ -90,7 +90,7 @@ Rerank 3.5, Tavily, LiveKit, Deepgram, Stripe Connect, Drizzle, Docker.
 
 - **Software Engineer Intern — Microsoft** · Redmond, WA (On-site) · May 2026 – Aug 2026
   - Team: Microsoft Security IQ (formerly Sentinel Platform) — the large-scale data-ingestion platform powering Microsoft Sentinel's data lake.
-  - Intelligent workload-placement engine (C#/.NET) routing ~7M shared-tenant pipeline jobs onto right-sized Kubernetes compute; engineered to raise fleet CPU utilization ~5x (11% to 59%) and cut compute cost.
+  - Intelligent workload-placement engine (C#/.NET) routing ~7M shared-tenant pipeline jobs onto right-sized Kubernetes compute; consolidated the fleet from D16 onto D8 SKU nodes, saving $150K/month across 4 regions (~$1.8M/year projected).
   - Two-step, config-driven placement algorithm with a network-boundary (VNet) match guard behind feature flags for zero-downtime rollout; data-driven correction validated across 7 million job runs / 30 days in Kusto (ADX) on Azure Data Lake; hardened with 22 integration tests + a classifier suite.
 - **Software Development Engineer — ION Trading** · Pune, India · Jan 2022 – Aug 2025
   - C# desktop interface for market data (XML); setup 1 week → 10 min.

@@ -160,7 +160,7 @@ export const projects: Project[] = [
     name: "Self-Healing AI Ops Mesh",
     blurb: "An LLM-driven self-healing service mesh with autonomous, AI root-cause remediation.",
     description:
-      "A gRPC service mesh that observes itself, identifies the deepest failing dependency in its call graph, and applies bounded remediation autonomously. An LLM drives the reasoning while a deterministic rule engine guarantees safety. Detects failures in under 5 seconds and recovers in under 10.",
+      "A gRPC service mesh that observes itself, identifies the deepest failing dependency in its call graph, and applies bounded remediation autonomously. An LLM drives the reasoning while a deterministic rule engine guarantees safety. Recovers from failures in under 10 seconds.",
     tags: ["LLM Agents", "AI Root-Cause", "Inference", "gRPC", "FastAPI", "OpenTelemetry", "Docker"],
     context: "CMPE 273 · Enterprise Distributed Systems · Final Project",
     highlights: [
